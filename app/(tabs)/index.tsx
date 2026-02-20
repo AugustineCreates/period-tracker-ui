@@ -74,7 +74,7 @@ export default function HomeScreen() {
             <Text className="text-white text-base font-bold">Log symptoms</Text>
           </TouchableOpacity>
           <TouchableOpacity className="flex-1 flex-row items-center justify-center gap-2 bg-brand-light rounded-full h-14">
-            <MaterialIcons name="mood" size={22} color="#f90680" />
+            <MaterialIcons name="mood" size={22} color="#ee2b8c" />
             <Text className="text-brand text-base font-bold">Daily mood</Text>
           </TouchableOpacity>
         </View>
@@ -84,7 +84,7 @@ export default function HomeScreen() {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerClassName="gap-4 pb-4">
           <View className="w-44 bg-[#f5f0f2] rounded-2xl p-5 gap-2 border border-line">
             <View className="flex-row items-center gap-2">
-              <MaterialIcons name="favorite" size={18} color="#f90680" />
+              <MaterialIcons name="favorite" size={18} color="#ee2b8c" />
               <Text className="text-[10px] font-bold text-brand tracking-widest">HEALTH</Text>
             </View>
             <Text className="text-lg font-bold text-content">High Energy</Text>
@@ -94,7 +94,7 @@ export default function HomeScreen() {
           </View>
           <View className="w-44 bg-[#f5f0f2] rounded-2xl p-5 gap-2 border border-line">
             <View className="flex-row items-center gap-2">
-              <MaterialIcons name="child-care" size={18} color="#f90680" />
+              <MaterialIcons name="child-care" size={18} color="#ee2b8c" />
               <Text className="text-[10px] font-bold text-brand tracking-widest">FERTILITY</Text>
             </View>
             <Text className="text-lg font-bold text-content">

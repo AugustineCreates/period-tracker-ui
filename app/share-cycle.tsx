@@ -41,7 +41,7 @@ export default function ShareCycleScreen() {
               <View key={t.key} className="flex-row items-center justify-between bg-black/[0.02] rounded-xl px-4 py-3">
                 <View className="flex-row items-center gap-3">
                   <View className="w-9 h-9 rounded-full bg-brand-light items-center justify-center">
-                    <MaterialIcons name={t.icon as any} size={18} color="#f90680" />
+                    <MaterialIcons name={t.icon as any} size={18} color="#ee2b8c" />
                   </View>
                   <Text className="text-sm font-semibold text-content">{t.label}</Text>
                 </View>
@@ -53,7 +53,7 @@ export default function ShareCycleScreen() {
 
         {[0, 1].map((i) => (
           <TouchableOpacity key={i} className="items-center justify-center py-8 border-2 border-dashed border-line rounded-3xl mb-4 gap-2">
-            <MaterialIcons name="person-add" size={36} color="rgba(249,6,128,0.6)" />
+            <MaterialIcons name="person-add" size={36} color="rgba(238,43,140,0.6)" />
             <Text className="text-base font-bold text-content">Empty Slot</Text>
             <Text className="text-xs text-content-secondary text-center px-6">
               {i === 0 ? "Invite another close friend or family member" : "Invite another person"}

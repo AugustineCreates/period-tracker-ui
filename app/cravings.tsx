@@ -35,7 +35,7 @@ export default function CravingsScreen() {
   return (
     <View className="flex-1 bg-surface pt-12">
       <Header title="My Cravings" showBack rightAction={
-        <TouchableOpacity><MaterialIcons name="favorite" size={24} color="#f90680" /></TouchableOpacity>
+        <TouchableOpacity><MaterialIcons name="favorite" size={24} color="#ee2b8c" /></TouchableOpacity>
       } />
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
@@ -44,7 +44,7 @@ export default function CravingsScreen() {
           <View>
             <View className="flex-row items-center gap-2">
               <Text className="text-base font-bold text-content">Notify Partners</Text>
-              <MaterialIcons name="auto-awesome" size={18} color="#f90680" />
+              <MaterialIcons name="auto-awesome" size={18} color="#ee2b8c" />
             </View>
             <Text className="text-xs text-content-secondary mt-0.5">Instantly share your desires with loved ones</Text>
           </View>
@@ -59,7 +59,7 @@ export default function CravingsScreen() {
             return (
               <TouchableOpacity key={c.id} className="items-center gap-2" onPress={() => setSelectedCat(c.id)}>
                 <View className={`w-16 h-16 rounded-full items-center justify-center border-2 ${sel ? "border-brand bg-brand-light" : "border-line bg-white"}`}>
-                  <MaterialIcons name={c.icon as any} size={28} color={sel ? "#f90680" : "#8c5f75"} />
+                  <MaterialIcons name={c.icon as any} size={28} color={sel ? "#ee2b8c" : "#8c5f75"} />
                 </View>
                 <Text className={`text-xs font-semibold ${sel ? "text-brand font-bold" : "text-content-secondary"}`}>{c.label}</Text>
               </TouchableOpacity>
@@ -79,9 +79,9 @@ export default function CravingsScreen() {
             return (
               <View key={item.id} className="bg-white rounded-2xl overflow-hidden border border-line w-[47%]">
                 <View className="w-full h-36 bg-surface-soft items-center justify-center relative">
-                  <MaterialIcons name={item.icon as any} size={48} color="#f90680" />
+                  <MaterialIcons name={item.icon as any} size={48} color="#ee2b8c" />
                   <View className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white items-center justify-center shadow-sm">
-                    <MaterialIcons name={item.icon as any} size={14} color="#f90680" />
+                    <MaterialIcons name={item.icon as any} size={14} color="#ee2b8c" />
                   </View>
                 </View>
                 <Text className="text-base font-bold text-content px-3 pt-3">{item.name}</Text>
@@ -103,7 +103,7 @@ export default function CravingsScreen() {
           className="flex-row items-center justify-center gap-2 bg-brand-light rounded-full py-4 mt-6 border border-dashed border-brand"
           onPress={() => router.push("/add-craving")}
         >
-          <MaterialIcons name="add-circle-outline" size={22} color="#f90680" />
+          <MaterialIcons name="add-circle-outline" size={22} color="#ee2b8c" />
           <Text className="text-base font-bold text-brand">Add Custom Craving</Text>
         </TouchableOpacity>
 

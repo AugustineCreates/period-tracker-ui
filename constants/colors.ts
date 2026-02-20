@@ -4,10 +4,10 @@
  * when you need a literal hex (e.g. LinearGradient, SVG, etc.).
  */
 export const Colors = {
-  brand: "#f90680",
-  brandLight: "rgba(249, 6, 128, 0.1)",
-  brandMuted: "rgba(249, 6, 128, 0.6)",
-  brandDark: "#d4056d",
+  brand: "#ee2b8c",
+  brandLight: "rgba(238, 43, 140, 0.1)",
+  brandMuted: "rgba(238, 43, 140, 0.6)",
+  brandDark: "#c9186f",
 
   surface: "#fdf8fa",
   card: "#ffffff",
@@ -21,7 +21,7 @@ export const Colors = {
   black: "#000000",
 
   border: "#fce7f3",
-  borderLight: "rgba(249, 6, 128, 0.1)",
+  borderLight: "rgba(238, 43, 140, 0.1)",
 
   blue: "#3b82f6",
   indigo: "#6366f1",

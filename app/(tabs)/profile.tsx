@@ -56,7 +56,7 @@ export default function ProfileScreen() {
             >
               <View className="flex-row items-center gap-3">
                 <View className="w-10 h-10 rounded-xl bg-brand-light items-center justify-center">
-                  <MaterialIcons name={item.icon as any} size={22} color="#f90680" />
+                  <MaterialIcons name={item.icon as any} size={22} color="#ee2b8c" />
                 </View>
                 <Text className="text-base font-semibold text-content">{item.label}</Text>
               </View>

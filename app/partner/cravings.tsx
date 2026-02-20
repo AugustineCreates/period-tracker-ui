@@ -106,7 +106,7 @@ export default function PartnerCravingsScreen() {
           </View>
         </View>
         <TouchableOpacity>
-          <MaterialIcons name="favorite" size={24} color="#f90680" />
+          <MaterialIcons name="favorite" size={24} color="#ee2b8c" />
         </TouchableOpacity>
       </View>
 
@@ -127,7 +127,7 @@ export default function PartnerCravingsScreen() {
           </Text>
           <CountdownTimer />
           <TouchableOpacity className="bg-white rounded-full flex-row items-center justify-center gap-2 py-3 mt-4">
-            <MaterialIcons name="directions-run" size={20} color="#f90680" />
+            <MaterialIcons name="directions-run" size={20} color="#ee2b8c" />
             <Text className="text-base font-bold text-brand">
               {"I'M ON IT!"}
             </Text>

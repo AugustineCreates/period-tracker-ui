@@ -10,10 +10,10 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#f90680",
-          light: "rgba(249, 6, 128, 0.1)",
-          muted: "rgba(249, 6, 128, 0.6)",
-          dark: "#d4056d",
+          DEFAULT: "#ee2b8c",
+          light: "rgba(238, 43, 140, 0.1)",
+          muted: "rgba(238, 43, 140, 0.6)",
+          dark: "#c9186f",
         },
         surface: {
           DEFAULT: "#fdf8fa",
@@ -29,7 +29,7 @@ module.exports = {
         },
         line: {
           DEFAULT: "#fce7f3",
-          light: "rgba(249, 6, 128, 0.1)",
+          light: "rgba(238, 43, 140, 0.1)",
         },
         mood: {
           happy: "#fbbf24",
@@ -39,7 +39,7 @@ module.exports = {
           sensitive: "#f472b6",
         },
         symptom: {
-          cramps: "#f90680",
+          cramps: "#ee2b8c",
           headache: "#8b5cf6",
           bloating: "#06b6d4",
           acne: "#f59e0b",

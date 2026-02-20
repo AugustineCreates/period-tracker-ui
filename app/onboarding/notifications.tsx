@@ -33,7 +33,7 @@ export default function NotificationsScreen() {
           <View className="absolute w-[270px] h-[270px] rounded-full border-2 border-dashed border-brand-light" />
           {/* Icon card */}
           <View className="w-48 h-48 rounded-4xl bg-white items-center justify-center shadow-xl">
-            <MaterialIcons name="notifications-active" size={80} color="#f90680" />
+            <MaterialIcons name="notifications-active" size={80} color="#ee2b8c" />
             {/* Badge */}
             <View className="absolute -top-3 -right-2 w-12 h-12 rounded-full bg-brand items-center justify-center shadow-lg shadow-brand/30 rotate-12">
               <MaterialIcons name="card-giftcard" size={22} color="#fff" />

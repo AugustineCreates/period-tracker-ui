@@ -112,7 +112,7 @@ export default function PartnerDashboardScreen() {
             className="flex-1 bg-white rounded-2xl py-6 items-center border border-line"
             onPress={() => router.push("/partner/gift-selection")}
           >
-            <MaterialIcons name="local-florist" size={32} color="#f90680" />
+            <MaterialIcons name="local-florist" size={32} color="#ee2b8c" />
             <Text className="text-sm font-bold text-content mt-3">
               Send Flowers
             </Text>
@@ -121,7 +121,7 @@ export default function PartnerDashboardScreen() {
             className="flex-1 bg-white rounded-2xl py-6 items-center border border-line"
             onPress={() => router.push("/partner/gift-selection")}
           >
-            <MaterialIcons name="cookie" size={32} color="#f90680" />
+            <MaterialIcons name="cookie" size={32} color="#ee2b8c" />
             <Text className="text-sm font-bold text-content mt-3">
               Send Chocolate
             </Text>

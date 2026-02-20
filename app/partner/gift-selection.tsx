@@ -129,7 +129,7 @@ export default function GiftSelectionScreen() {
                 <MaterialIcons
                   name={g.icon as any}
                   size={52}
-                  color="#f90680"
+                  color="#ee2b8c"
                 />
               </View>
               <View className="p-3">
@@ -160,7 +160,7 @@ export default function GiftSelectionScreen() {
         {/* Personalized Suggestion */}
         <TouchableOpacity className="bg-white rounded-2xl flex-row items-center p-4 mt-6 mb-10 border border-line">
           <View className="w-12 h-12 rounded-full bg-brand-light items-center justify-center mr-3">
-            <MaterialIcons name="auto-awesome" size={22} color="#f90680" />
+            <MaterialIcons name="auto-awesome" size={22} color="#ee2b8c" />
           </View>
           <View className="flex-1">
             <Text className="text-xs text-content-secondary">

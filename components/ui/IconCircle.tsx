@@ -12,7 +12,7 @@ interface IconCircleProps {
 export function IconCircle({
   name,
   size = 28,
-  color = "#f90680",
+  color = "#ee2b8c",
   bgClassName = "bg-brand-light",
 }: IconCircleProps) {
   return (

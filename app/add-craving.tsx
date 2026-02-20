@@ -21,7 +21,7 @@ export default function AddCravingScreen() {
         </TouchableOpacity>
         <Text className="text-base font-bold text-content">Add Custom Craving</Text>
         <TouchableOpacity>
-          <MaterialIcons name="check" size={24} color="#f90680" />
+          <MaterialIcons name="check" size={24} color="#ee2b8c" />
         </TouchableOpacity>
       </View>
 
@@ -35,7 +35,7 @@ export default function AddCravingScreen() {
         <TextInput
           className="bg-surface-soft rounded-2xl border border-line p-4 h-28 text-base text-content"
           placeholder="Double fudge brownies, a weighted blanket, or maybe just a nap..."
-          placeholderTextColor="rgba(249,6,128,0.4)"
+          placeholderTextColor="rgba(238,43,140,0.4)"
           value={text}
           onChangeText={setText}
           multiline
@@ -57,7 +57,7 @@ export default function AddCravingScreen() {
 
         <Text className="text-base font-bold text-content mt-6 mb-3">{"Show us what you're dreaming of"}</Text>
         <TouchableOpacity className="border-2 border-dashed border-brand rounded-2xl py-10 items-center justify-center gap-2 bg-surface-soft">
-          <MaterialIcons name="add-a-photo" size={36} color="#f90680" />
+          <MaterialIcons name="add-a-photo" size={36} color="#ee2b8c" />
           <Text className="text-base font-bold text-brand">Snap a pic or upload</Text>
           <Text className="text-xs text-content-secondary">Help your partner get it right!</Text>
         </TouchableOpacity>

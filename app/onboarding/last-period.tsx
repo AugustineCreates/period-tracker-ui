@@ -63,13 +63,13 @@ export default function LastPeriodScreen() {
         <View className="bg-brand-light/50 rounded-2xl p-4 mt-6 border border-line-light">
           <View className="flex-row items-center justify-between mb-4">
             <TouchableOpacity onPress={prevMonth} className="p-2">
-              <MaterialIcons name="chevron-left" size={28} color="#f90680" />
+              <MaterialIcons name="chevron-left" size={28} color="#ee2b8c" />
             </TouchableOpacity>
             <Text className="text-lg font-bold text-content">
               {monthNames[currentMonth]} {currentYear}
             </Text>
             <TouchableOpacity onPress={nextMonth} className="p-2">
-              <MaterialIcons name="chevron-right" size={28} color="#f90680" />
+              <MaterialIcons name="chevron-right" size={28} color="#ee2b8c" />
             </TouchableOpacity>
           </View>
 
@@ -108,7 +108,7 @@ export default function LastPeriodScreen() {
         {/* Don't remember */}
         <View className="flex-row items-center justify-between bg-brand-light/50 rounded-2xl px-6 py-4 mt-8 border border-brand-light/50">
           <View className="flex-row items-center gap-3">
-            <MaterialIcons name="help-outline" size={22} color="rgba(249,6,128,0.6)" />
+            <MaterialIcons name="help-outline" size={22} color="rgba(238,43,140,0.6)" />
             <Text className="text-base font-medium text-content">{"I don't remember"}</Text>
           </View>
           <ToggleSwitch value={dontRemember} onToggle={setDontRemember} />

@@ -44,7 +44,7 @@ export default function GiftRevealScreen() {
         {/* Gift Image Area */}
         <View className="items-center mt-6">
           <View className="w-full h-72 bg-surface-soft rounded-3xl items-center justify-center overflow-hidden">
-            <MaterialIcons name="local-florist" size={80} color="#f90680" />
+            <MaterialIcons name="local-florist" size={80} color="#ee2b8c" />
           </View>
         </View>
 
@@ -113,7 +113,7 @@ export default function GiftRevealScreen() {
                   <MaterialIcons
                     name={r.icon as any}
                     size={18}
-                    color="#f90680"
+                    color="#ee2b8c"
                   />
                   <Text className="text-sm font-bold text-brand">
                     {r.label}

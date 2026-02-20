@@ -51,7 +51,7 @@ export default function CalendarScreen() {
     if (fertile) return (
       <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center bg-surface-fertile" onPress={() => setSelDay(day)}>
         <Text className="text-sm font-semibold text-brand">{day}</Text>
-        {ovul && <MaterialIcons name="favorite" size={8} color="#f90680" className="absolute bottom-1" />}
+        {ovul && <MaterialIcons name="favorite" size={8} color="#ee2b8c" className="absolute bottom-1" />}
       </TouchableOpacity>
     );
     if (td) return (
@@ -127,7 +127,7 @@ export default function CalendarScreen() {
           <View className="bg-surface-soft rounded-4xl p-5 border border-line-light">
             <View className="flex-row gap-4 items-start">
               <View className="w-11 h-11 rounded-xl bg-white items-center justify-center shadow-sm">
-                <MaterialIcons name="lightbulb" size={22} color="#f90680" />
+                <MaterialIcons name="lightbulb" size={22} color="#ee2b8c" />
               </View>
               <View className="flex-1">
                 <Text className="text-sm font-bold text-content mb-1">{getPhaseLabel(phase)}</Text>
@@ -146,7 +146,7 @@ export default function CalendarScreen() {
             ].map((c) => (
               <View key={c.label} className="flex-row items-center gap-2 bg-white rounded-full pl-1 pr-4 h-10 border border-black/5 shadow-sm">
                 <View className={`w-7 h-7 rounded-full items-center justify-center ${c.bg}`}>
-                  <MaterialIcons name={c.icon as any} size={14} color={c.icon === "bolt" ? "#f90680" : c.icon === "sentiment-satisfied" ? "#d97706" : "#2563eb"} />
+                  <MaterialIcons name={c.icon as any} size={14} color={c.icon === "bolt" ? "#ee2b8c" : c.icon === "sentiment-satisfied" ? "#d97706" : "#2563eb"} />
                 </View>
                 <Text className="text-sm font-semibold text-content">{c.label}</Text>
               </View>

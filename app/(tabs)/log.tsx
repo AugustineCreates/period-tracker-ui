@@ -87,7 +87,7 @@ export default function DailyLogScreen() {
                 className={`w-[30%] items-center gap-2 rounded-2xl border py-4 ${sel ? "border-2 border-brand bg-brand-light/50" : "border-line bg-white"}`}
                 onPress={() => setSelectedMood(m.id)}
               >
-                <MaterialIcons name={m.icon as any} size={28} color={sel ? "#f90680" : "rgba(249,6,128,0.6)"} />
+                <MaterialIcons name={m.icon as any} size={28} color={sel ? "#ee2b8c" : "rgba(238,43,140,0.6)"} />
                 <Text className="text-xs font-bold text-content">{m.label}</Text>
               </TouchableOpacity>
             );
@@ -119,7 +119,7 @@ export default function DailyLogScreen() {
                 className={`w-[47%] flex-row items-center gap-3 rounded-2xl border p-4 ${sel ? "border-brand bg-brand-light/50" : "border-line bg-white"}`}
                 onPress={() => toggleSymptom(s.id)}
               >
-                <MaterialIcons name={s.icon as any} size={22} color="#f90680" />
+                <MaterialIcons name={s.icon as any} size={22} color="#ee2b8c" />
                 <Text className="text-base font-bold text-content">{s.label}</Text>
               </TouchableOpacity>
             );
