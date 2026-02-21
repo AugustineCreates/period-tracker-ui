@@ -4,6 +4,11 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Button } from "@/components/ui/Button";
 
+const PINK = "#ee2b8c";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const LINE = "#e6dbe0";
+
 export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -11,38 +16,49 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    // TODO: Implement actual auth
     router.replace("/(tabs)");
   };
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 bg-surface"
+      style={{ flex: 1, backgroundColor: "#fdf8fa" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView
-        className="flex-1"
-        contentContainerClassName="grow px-6"
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 24 }}
         keyboardShouldPersistTaps="handled"
       >
         {/* Back */}
-        <TouchableOpacity className="mt-14 w-11 h-11 items-center justify-center" onPress={() => router.back()}>
-          <MaterialIcons name="arrow-back-ios" size={22} color="#181114" />
+        <TouchableOpacity
+          style={{ marginTop: 56, width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+          onPress={() => router.back()}
+        >
+          <MaterialIcons name="arrow-back-ios" size={22} color={TEXT} />
         </TouchableOpacity>
 
-        <View className="mt-8">
-          <Text className="text-3xl font-extrabold text-content tracking-tight">Welcome back</Text>
-          <Text className="text-base text-content-secondary mt-2">
+        <View style={{ marginTop: 32 }}>
+          <Text style={{ fontSize: 28, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>Welcome back</Text>
+          <Text style={{ fontSize: 16, color: TEXT2, marginTop: 8 }}>
             Log in to continue tracking your cycle.
           </Text>
         </View>
 
         {/* Form */}
-        <View className="mt-10 gap-4">
+        <View style={{ marginTop: 40, gap: 16 }}>
           <View>
-            <Text className="text-sm font-bold text-content mb-2">Email</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Email</Text>
             <TextInput
-              className="bg-white rounded-2xl border border-line px-4 h-14 text-base text-content"
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+                paddingHorizontal: 16,
+                height: 56,
+                fontSize: 16,
+                color: TEXT,
+              }}
               placeholder="your@email.com"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={email}
@@ -53,10 +69,21 @@ export default function LoginScreen() {
           </View>
 
           <View>
-            <Text className="text-sm font-bold text-content mb-2">Password</Text>
-            <View className="flex-row items-center bg-white rounded-2xl border border-line px-4 h-14">
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Password</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+                paddingHorizontal: 16,
+                height: 56,
+              }}
+            >
               <TextInput
-                className="flex-1 text-base text-content"
+                style={{ flex: 1, fontSize: 16, color: TEXT }}
                 placeholder="Enter your password"
                 placeholderTextColor="rgba(24,17,20,0.3)"
                 value={password}
@@ -64,42 +91,53 @@ export default function LoginScreen() {
                 secureTextEntry={!showPassword}
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                <MaterialIcons name={showPassword ? "visibility" : "visibility-off"} size={22} color="#8c5f75" />
+                <MaterialIcons name={showPassword ? "visibility" : "visibility-off"} size={22} color={TEXT2} />
               </TouchableOpacity>
             </View>
           </View>
 
-          <TouchableOpacity className="self-end">
-            <Text className="text-sm font-semibold text-brand">Forgot password?</Text>
+          <TouchableOpacity style={{ alignSelf: "flex-end" }}>
+            <Text style={{ fontSize: 14, fontWeight: "600", color: PINK }}>Forgot password?</Text>
           </TouchableOpacity>
         </View>
 
-        <View className="mt-8">
+        <View style={{ marginTop: 32 }}>
           <Button title="Log In" onPress={handleLogin} />
         </View>
 
         {/* Divider */}
-        <View className="flex-row items-center my-8">
-          <View className="flex-1 h-px bg-line" />
-          <Text className="px-4 text-xs text-content/40 font-medium">OR</Text>
-          <View className="flex-1 h-px bg-line" />
+        <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 32 }}>
+          <View style={{ flex: 1, height: 1, backgroundColor: LINE }} />
+          <Text style={{ paddingHorizontal: 16, fontSize: 12, color: "rgba(24,17,20,0.4)", fontWeight: "500" }}>OR</Text>
+          <View style={{ flex: 1, height: 1, backgroundColor: LINE }} />
         </View>
 
         {/* Social */}
-        <TouchableOpacity className="flex-row items-center justify-center h-14 rounded-full border-2 border-line gap-3">
-          <MaterialIcons name="g-mobiledata" size={24} color="#181114" />
-          <Text className="font-bold text-content">Continue with Google</Text>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 56,
+            borderRadius: 28,
+            borderWidth: 2,
+            borderColor: LINE,
+            gap: 12,
+          }}
+        >
+          <MaterialIcons name="g-mobiledata" size={24} color={TEXT} />
+          <Text style={{ fontWeight: "700", color: TEXT, fontSize: 16 }}>Continue with Google</Text>
         </TouchableOpacity>
 
         {/* Sign up link */}
-        <View className="flex-1" />
+        <View style={{ flex: 1 }} />
         <TouchableOpacity
-          className="items-center pb-10"
+          style={{ alignItems: "center", paddingBottom: 40 }}
           onPress={() => router.push("/auth/signup")}
         >
-          <Text className="text-sm text-content/60 font-semibold">
+          <Text style={{ fontSize: 14, color: "rgba(24,17,20,0.6)", fontWeight: "600" }}>
             {"Don't have an account? "}
-            <Text className="text-brand">Sign Up</Text>
+            <Text style={{ color: PINK }}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>

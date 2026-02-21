@@ -4,6 +4,11 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Button } from "@/components/ui/Button";
 
+const PINK = "#ee2b8c";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const LINE = "#e6dbe0";
+
 export default function SignUpScreen() {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -11,36 +16,47 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState("");
 
   const handleSignUp = () => {
-    // TODO: Implement actual auth
     router.replace("/onboarding/welcome");
   };
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 bg-surface"
+      style={{ flex: 1, backgroundColor: "#fdf8fa" }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView
-        className="flex-1"
-        contentContainerClassName="grow px-6"
+        style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 24 }}
         keyboardShouldPersistTaps="handled"
       >
-        <TouchableOpacity className="mt-14 w-11 h-11 items-center justify-center" onPress={() => router.back()}>
-          <MaterialIcons name="arrow-back-ios" size={22} color="#181114" />
+        <TouchableOpacity
+          style={{ marginTop: 56, width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+          onPress={() => router.back()}
+        >
+          <MaterialIcons name="arrow-back-ios" size={22} color={TEXT} />
         </TouchableOpacity>
 
-        <View className="mt-8">
-          <Text className="text-3xl font-extrabold text-content tracking-tight">Create account</Text>
-          <Text className="text-base text-content-secondary mt-2">
+        <View style={{ marginTop: 32 }}>
+          <Text style={{ fontSize: 28, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>Create account</Text>
+          <Text style={{ fontSize: 16, color: TEXT2, marginTop: 8 }}>
             Join Her Circle and start understanding your body.
           </Text>
         </View>
 
-        <View className="mt-10 gap-4">
+        <View style={{ marginTop: 40, gap: 16 }}>
           <View>
-            <Text className="text-sm font-bold text-content mb-2">Full Name</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Full Name</Text>
             <TextInput
-              className="bg-white rounded-2xl border border-line px-4 h-14 text-base text-content"
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+                paddingHorizontal: 16,
+                height: 56,
+                fontSize: 16,
+                color: TEXT,
+              }}
               placeholder="Your name"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={name}
@@ -49,9 +65,18 @@ export default function SignUpScreen() {
           </View>
 
           <View>
-            <Text className="text-sm font-bold text-content mb-2">Email</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Email</Text>
             <TextInput
-              className="bg-white rounded-2xl border border-line px-4 h-14 text-base text-content"
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+                paddingHorizontal: 16,
+                height: 56,
+                fontSize: 16,
+                color: TEXT,
+              }}
               placeholder="your@email.com"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={email}
@@ -62,9 +87,18 @@ export default function SignUpScreen() {
           </View>
 
           <View>
-            <Text className="text-sm font-bold text-content mb-2">Password</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Password</Text>
             <TextInput
-              className="bg-white rounded-2xl border border-line px-4 h-14 text-base text-content"
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+                paddingHorizontal: 16,
+                height: 56,
+                fontSize: 16,
+                color: TEXT,
+              }}
               placeholder="Create a strong password"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={password}
@@ -74,19 +108,22 @@ export default function SignUpScreen() {
           </View>
         </View>
 
-        <View className="mt-8">
+        <View style={{ marginTop: 32 }}>
           <Button title="Create Account" onPress={handleSignUp} />
         </View>
 
-        <Text className="text-xs text-content/40 text-center mt-4 leading-5 px-4">
+        <Text style={{ fontSize: 12, color: "rgba(24,17,20,0.4)", textAlign: "center", marginTop: 16, lineHeight: 20, paddingHorizontal: 16 }}>
           By signing up, you agree to our Terms of Service and Privacy Policy
         </Text>
 
-        <View className="flex-1" />
-        <TouchableOpacity className="items-center pb-10" onPress={() => router.push("/auth/login")}>
-          <Text className="text-sm text-content/60 font-semibold">
+        <View style={{ flex: 1 }} />
+        <TouchableOpacity
+          style={{ alignItems: "center", paddingBottom: 40 }}
+          onPress={() => router.push("/auth/login")}
+        >
+          <Text style={{ fontSize: 14, color: "rgba(24,17,20,0.6)", fontWeight: "600" }}>
             {"Already have an account? "}
-            <Text className="text-brand">Log In</Text>
+            <Text style={{ color: PINK }}>Log In</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>
