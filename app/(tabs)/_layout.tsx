@@ -45,22 +45,8 @@ export default function TabLayout() {
           title: "",
           tabBarIcon: () => (
             <View
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: 28,
-                backgroundColor: "#ee2b8c",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: -32,
-                borderWidth: 4,
-                borderColor: "#fcf8fa",
-                shadowColor: "#ee2b8c",
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.3,
-                shadowRadius: 8,
-                elevation: 6,
-              }}
+              className="w-14 h-14 rounded-full bg-[#ee2b8c] items-center justify-center -mt-8 border-4 border-[#fcf8fa]"
+              style={{ shadowColor: "#ee2b8c", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 6 }}
             >
               <MaterialIcons name="add" size={30} color="#fff" />
             </View>

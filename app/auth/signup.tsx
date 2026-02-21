@@ -4,11 +4,6 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Button } from "@/components/ui/Button";
 
-const PINK = "#ee2b8c";
-const TEXT = "#181114";
-const TEXT2 = "#8c5f75";
-const LINE = "#e6dbe0";
-
 export default function SignUpScreen() {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -21,42 +16,33 @@ export default function SignUpScreen() {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: "#fdf8fa" }}
+      className="flex-1 bg-[#fdf8fa]"
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView
-        style={{ flex: 1 }}
+        className="flex-1"
         contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 24 }}
         keyboardShouldPersistTaps="handled"
       >
         <TouchableOpacity
-          style={{ marginTop: 56, width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+          className="mt-14 w-11 h-11 items-center justify-center"
           onPress={() => router.back()}
         >
-          <MaterialIcons name="arrow-back-ios" size={22} color={TEXT} />
+          <MaterialIcons name="arrow-back-ios" size={22} color="#181114" />
         </TouchableOpacity>
 
-        <View style={{ marginTop: 32 }}>
-          <Text style={{ fontSize: 28, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>Create account</Text>
-          <Text style={{ fontSize: 16, color: TEXT2, marginTop: 8 }}>
+        <View className="mt-8">
+          <Text className="text-[28px] font-extrabold text-[#181114] tracking-tight">Create account</Text>
+          <Text className="text-base text-[#8c5f75] mt-2">
             Join Her Circle and start understanding your body.
           </Text>
         </View>
 
-        <View style={{ marginTop: 40, gap: 16 }}>
+        <View className="mt-10 gap-4">
           <View>
-            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Full Name</Text>
+            <Text className="text-sm font-bold text-[#181114] mb-2">Full Name</Text>
             <TextInput
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                borderWidth: 1,
-                borderColor: LINE,
-                paddingHorizontal: 16,
-                height: 56,
-                fontSize: 16,
-                color: TEXT,
-              }}
+              className="bg-white rounded-2xl border border-[#e6dbe0] px-4 h-14 text-base text-[#181114]"
               placeholder="Your name"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={name}
@@ -65,18 +51,9 @@ export default function SignUpScreen() {
           </View>
 
           <View>
-            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Email</Text>
+            <Text className="text-sm font-bold text-[#181114] mb-2">Email</Text>
             <TextInput
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                borderWidth: 1,
-                borderColor: LINE,
-                paddingHorizontal: 16,
-                height: 56,
-                fontSize: 16,
-                color: TEXT,
-              }}
+              className="bg-white rounded-2xl border border-[#e6dbe0] px-4 h-14 text-base text-[#181114]"
               placeholder="your@email.com"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={email}
@@ -87,18 +64,9 @@ export default function SignUpScreen() {
           </View>
 
           <View>
-            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 8 }}>Password</Text>
+            <Text className="text-sm font-bold text-[#181114] mb-2">Password</Text>
             <TextInput
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                borderWidth: 1,
-                borderColor: LINE,
-                paddingHorizontal: 16,
-                height: 56,
-                fontSize: 16,
-                color: TEXT,
-              }}
+              className="bg-white rounded-2xl border border-[#e6dbe0] px-4 h-14 text-base text-[#181114]"
               placeholder="Create a strong password"
               placeholderTextColor="rgba(24,17,20,0.3)"
               value={password}
@@ -108,22 +76,22 @@ export default function SignUpScreen() {
           </View>
         </View>
 
-        <View style={{ marginTop: 32 }}>
+        <View className="mt-8">
           <Button title="Create Account" onPress={handleSignUp} />
         </View>
 
-        <Text style={{ fontSize: 12, color: "rgba(24,17,20,0.4)", textAlign: "center", marginTop: 16, lineHeight: 20, paddingHorizontal: 16 }}>
+        <Text className="text-xs text-[rgba(24,17,20,0.4)] text-center mt-4 leading-5 px-4">
           By signing up, you agree to our Terms of Service and Privacy Policy
         </Text>
 
-        <View style={{ flex: 1 }} />
+        <View className="flex-1" />
         <TouchableOpacity
-          style={{ alignItems: "center", paddingBottom: 40 }}
+          className="items-center pb-10"
           onPress={() => router.push("/auth/login")}
         >
-          <Text style={{ fontSize: 14, color: "rgba(24,17,20,0.6)", fontWeight: "600" }}>
+          <Text className="text-sm text-[rgba(24,17,20,0.6)] font-semibold">
             {"Already have an account? "}
-            <Text style={{ color: PINK }}>Log In</Text>
+            <Text className="text-[#ee2b8c]">Log In</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>

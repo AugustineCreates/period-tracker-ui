@@ -47,43 +47,43 @@ export default function LastPeriodScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fdf8fa", paddingTop: 48 }}>
+    <View className="flex-1 bg-[#fdf8fa] pt-12">
       <Header showBack stepText="Step 2 of 5" />
       <ProgressDots total={5} current={1} />
 
-      <ScrollView style={{ flex: 1, paddingHorizontal: 24 }} showsVerticalScrollIndicator={false}>
-        <Text style={{ fontSize: 28, fontWeight: "700", color: "#181114", textAlign: "center", paddingTop: 32, letterSpacing: -0.5 }}>
+      <ScrollView className="flex-1 px-6" showsVerticalScrollIndicator={false}>
+        <Text className="text-[28px] font-bold text-[#181114] text-center pt-8 tracking-tight">
           When did your last period start?
         </Text>
-        <Text style={{ fontSize: 16, color: "rgba(24,17,20,0.6)", textAlign: "center", marginTop: 12, lineHeight: 24 }}>
+        <Text className="text-base text-[rgba(24,17,20,0.6)] text-center mt-3 leading-6">
           Select the first day of your most recent cycle to help us track your health.
         </Text>
 
         {/* Calendar */}
-        <View style={{ backgroundColor: "rgba(252,231,243,0.5)", borderRadius: 16, padding: 16, marginTop: 24, borderWidth: 1, borderColor: "#f0e8ec" }}>
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-            <TouchableOpacity onPress={prevMonth} style={{ padding: 8 }}>
+        <View className="bg-[rgba(252,231,243,0.5)] rounded-2xl p-4 mt-6 border border-[#f0e8ec]">
+          <View className="flex-row items-center justify-between mb-4">
+            <TouchableOpacity onPress={prevMonth} className="p-2">
               <MaterialIcons name="chevron-left" size={28} color="#ee2b8c" />
             </TouchableOpacity>
-            <Text style={{ fontSize: 18, fontWeight: "700", color: "#181114" }}>
+            <Text className="text-lg font-bold text-[#181114]">
               {monthNames[currentMonth]} {currentYear}
             </Text>
-            <TouchableOpacity onPress={nextMonth} style={{ padding: 8 }}>
+            <TouchableOpacity onPress={nextMonth} className="p-2">
               <MaterialIcons name="chevron-right" size={28} color="#ee2b8c" />
             </TouchableOpacity>
           </View>
 
-          <View style={{ flexDirection: "row", marginBottom: 8 }}>
+          <View className="flex-row mb-2">
             {DAYS.map((d, i) => (
-              <Text key={i} style={{ flex: 1, textAlign: "center", fontSize: 12, fontWeight: "700", color: "rgba(24,17,20,0.4)", letterSpacing: 2 }}>
+              <Text key={i} className="flex-1 text-center text-xs font-bold text-[rgba(24,17,20,0.4)] tracking-widest">
                 {d}
               </Text>
             ))}
           </View>
 
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+          <View className="flex-row flex-wrap">
             {Array.from({ length: firstDay }).map((_, i) => (
-              <View key={`e-${i}`} style={{ width: "14.28%", height: 48, alignItems: "center", justifyContent: "center" } as any} />
+              <View key={`e-${i}`} style={{ width: "14.28%", height: 48 } as any} className="items-center justify-center" />
             ))}
             {Array.from({ length: daysInMonth }).map((_, i) => {
               const day = i + 1;
@@ -91,19 +91,17 @@ export default function LastPeriodScreen() {
               return (
                 <TouchableOpacity
                   key={day}
-                  style={{ width: "14.28%", height: 48, alignItems: "center", justifyContent: "center" } as any}
+                  style={{ width: "14.28%", height: 48 } as any}
+                  className="items-center justify-center"
                   onPress={() => { setSelectedDay(day); setDontRemember(false); }}
                 >
-                  <View style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: isSelected ? "#ee2b8c" : "transparent",
-                    ...(isSelected ? { shadowColor: "#ee2b8c", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 8, elevation: 6 } : {}),
-                  }}>
-                    <Text style={{ fontSize: 14, fontWeight: "500", color: isSelected ? "#fff" : "#181114" }}>
+                  <View
+                    className={`w-10 h-10 rounded-full items-center justify-center ${
+                      isSelected ? "bg-[#ee2b8c]" : ""
+                    }`}
+                    style={isSelected ? { shadowColor: "#ee2b8c", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 8, elevation: 6 } : undefined}
+                  >
+                    <Text className={`text-sm font-medium ${isSelected ? "text-white" : "text-[#181114]"}`}>
                       {day}
                     </Text>
                   </View>
@@ -114,27 +112,16 @@ export default function LastPeriodScreen() {
         </View>
 
         {/* Don't remember */}
-        <View style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          backgroundColor: "rgba(252,231,243,0.5)",
-          borderRadius: 16,
-          paddingHorizontal: 24,
-          paddingVertical: 16,
-          marginTop: 32,
-          borderWidth: 1,
-          borderColor: "rgba(252,231,243,0.5)",
-        }}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+        <View className="flex-row items-center justify-between bg-[rgba(252,231,243,0.5)] rounded-2xl px-6 py-4 mt-8 border border-[rgba(252,231,243,0.5)]">
+          <View className="flex-row items-center gap-3">
             <MaterialIcons name="help-outline" size={22} color="rgba(238,43,140,0.6)" />
-            <Text style={{ fontSize: 16, fontWeight: "500", color: "#181114" }}>{"I don't remember"}</Text>
+            <Text className="text-base font-medium text-[#181114]">{"I don't remember"}</Text>
           </View>
           <ToggleSwitch value={dontRemember} onToggle={setDontRemember} />
         </View>
       </ScrollView>
 
-      <View style={{ paddingHorizontal: 24, paddingBottom: 40 }}>
+      <View className="px-6 pb-10">
         <Button
           title="Next"
           onPress={handleNext}

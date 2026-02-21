@@ -4,12 +4,6 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useApp } from "@/context/AppContext";
 
-const PINK = "#ee2b8c";
-const TEXT = "#181114";
-const TEXT2 = "#8c5f75";
-const LINE = "#e6dbe0";
-const BRAND_LIGHT = "#fce7f3";
-
 const menuItems = [
   { icon: "person-outline", label: "Edit Profile" },
   { icon: "share", label: "Share My Cycle", route: "/share-cycle" },
@@ -26,89 +20,55 @@ export default function ProfileScreen() {
   const { userName, onboardingData, dailyLogs } = useApp();
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fdf8fa" }}>
+    <View className="flex-1 bg-[#fdf8fa]">
       <ScrollView contentContainerStyle={{ paddingTop: 80, paddingBottom: 128 }} showsVerticalScrollIndicator={false}>
         {/* Avatar */}
-        <View style={{ alignItems: "center", paddingVertical: 24 }}>
-          <View style={{
-            width: 80,
-            height: 80,
-            borderRadius: 40,
-            backgroundColor: PINK,
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 16,
-            shadowColor: PINK,
-            shadowOffset: { width: 0, height: 8 },
-            shadowOpacity: 0.3,
-            shadowRadius: 16,
-            elevation: 8,
-          }}>
-            <Text style={{ fontSize: 28, fontWeight: "700", color: "#fff" }}>{userName.charAt(0).toUpperCase()}</Text>
+        <View className="items-center py-6">
+          <View
+            className="w-20 h-20 rounded-full bg-[#ee2b8c] items-center justify-center mb-4"
+            style={{ shadowColor: "#ee2b8c", shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 8 }}
+          >
+            <Text className="text-[28px] font-bold text-white">{userName.charAt(0).toUpperCase()}</Text>
           </View>
-          <Text style={{ fontSize: 24, fontWeight: "800", color: TEXT }}>{userName}</Text>
-          <Text style={{ fontSize: 14, color: TEXT2, marginTop: 4, textTransform: "capitalize" }}>
+          <Text className="text-2xl font-extrabold text-[#181114]">{userName}</Text>
+          <Text className="text-sm text-[#8c5f75] mt-1 capitalize">
             Goal: {onboardingData.goal?.replace("_", " ") || "Track Cycle"}
           </Text>
         </View>
 
         {/* Stats */}
-        <View style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-around",
-          backgroundColor: "#fff",
-          marginHorizontal: 16,
-          borderRadius: 24,
-          padding: 20,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 1 },
-          shadowOpacity: 0.05,
-          shadowRadius: 2,
-          elevation: 1,
-          borderWidth: 1,
-          borderColor: LINE,
-        }}>
+        <View className="flex-row items-center justify-around bg-white mx-4 rounded-3xl p-5 shadow-sm border border-[#e6dbe0]">
           {[{ n: onboardingData.cycleLength, l: "Cycle" }, { n: dailyLogs.length, l: "Logged" }, { n: 5, l: "Period" }].map((s, i) => (
             <React.Fragment key={s.l}>
-              {i > 0 && <View style={{ width: 1, height: 36, backgroundColor: LINE }} />}
-              <View style={{ alignItems: "center", gap: 4 }}>
-                <Text style={{ fontSize: 24, fontWeight: "800", color: PINK }}>{s.n}</Text>
-                <Text style={{ fontSize: 12, color: TEXT2, fontWeight: "500" }}>{s.l}</Text>
+              {i > 0 && <View className="w-px h-9 bg-[#e6dbe0]" />}
+              <View className="items-center gap-1">
+                <Text className="text-2xl font-extrabold text-[#ee2b8c]">{s.n}</Text>
+                <Text className="text-xs text-[#8c5f75] font-medium">{s.l}</Text>
               </View>
             </React.Fragment>
           ))}
         </View>
 
         {/* Menu */}
-        <View style={{ marginTop: 24, paddingHorizontal: 16, gap: 4 }}>
+        <View className="mt-6 px-4 gap-1">
           {menuItems.map((item, i) => (
             <TouchableOpacity
               key={i}
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                padding: 16,
-                borderWidth: 1,
-                borderColor: LINE,
-              }}
+              className="flex-row items-center justify-between bg-white rounded-2xl p-4 border border-[#e6dbe0]"
               onPress={() => (item as any).route && router.push((item as any).route)}
             >
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: BRAND_LIGHT, alignItems: "center", justifyContent: "center" }}>
-                  <MaterialIcons name={item.icon as any} size={22} color={PINK} />
+              <View className="flex-row items-center gap-3">
+                <View className="w-10 h-10 rounded-xl bg-[#fce7f3] items-center justify-center">
+                  <MaterialIcons name={item.icon as any} size={22} color="#ee2b8c" />
                 </View>
-                <Text style={{ fontSize: 16, fontWeight: "600", color: TEXT }}>{item.label}</Text>
+                <Text className="text-base font-semibold text-[#181114]">{item.label}</Text>
               </View>
               <MaterialIcons name="chevron-right" size={22} color="rgba(0,0,0,0.2)" />
             </TouchableOpacity>
           ))}
         </View>
 
-        <Text style={{ textAlign: "center", fontSize: 12, color: "rgba(0,0,0,0.2)", marginTop: 32 }}>Her Circle v1.0.0</Text>
+        <Text className="text-center text-xs text-[rgba(0,0,0,0.2)] mt-8">Her Circle v1.0.0</Text>
       </ScrollView>
     </View>
   );

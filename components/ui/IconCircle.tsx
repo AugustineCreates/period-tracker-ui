@@ -17,14 +17,8 @@ export function IconCircle({
 }: IconCircleProps) {
   return (
     <View
-      style={{
-        width: 56,
-        height: 56,
-        borderRadius: 28,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: bgColor,
-      }}
+      className="w-14 h-14 rounded-full items-center justify-center"
+      style={{ backgroundColor: bgColor }}
     >
       <MaterialIcons name={name} size={size} color={color} />
     </View>

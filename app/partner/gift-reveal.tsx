@@ -4,13 +4,6 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Button } from "@/components/ui/Button";
 
-const PINK = "#ee2b8c";
-const TEXT = "#181114";
-const TEXT2 = "#8c5f75";
-const LINE = "#e6dbe0";
-const SOFT = "#f5f0f2";
-const BRAND_LIGHT = "#fce7f3";
-
 const quickResponses = [
   { label: "Love you!", icon: "favorite" },
   { label: "You're the best!", icon: "emoji-events" },
@@ -23,86 +16,86 @@ export default function GiftRevealScreen() {
   const [thanksSent, setThanksSent] = useState(false);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fdf8fa" }}>
+    <View className="flex-1 bg-[#fdf8fa]">
       {/* Close button */}
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, paddingTop: 56, paddingBottom: 8 }}>
-        <TouchableOpacity style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }} onPress={() => router.back()}>
-          <MaterialIcons name="close" size={24} color={TEXT} />
+      <View className="flex-row items-center justify-between px-4 pt-14 pb-2">
+        <TouchableOpacity className="w-11 h-11 items-center justify-center" onPress={() => router.back()}>
+          <MaterialIcons name="close" size={24} color="#181114" />
         </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: "700", color: TEXT }}>A Surprise for You!</Text>
-        <View style={{ width: 44 }} />
+        <Text className="text-lg font-bold text-[#181114]">A Surprise for You!</Text>
+        <View className="w-11" />
       </View>
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {/* Gift Image Area */}
-        <View style={{ alignItems: "center", marginTop: 24 }}>
-          <View style={{ width: "100%", height: 288, backgroundColor: SOFT, borderRadius: 24, alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-            <MaterialIcons name="local-florist" size={80} color={PINK} />
+        <View className="items-center mt-6">
+          <View className="w-full h-72 bg-[#f5f0f2] rounded-3xl items-center justify-center overflow-hidden">
+            <MaterialIcons name="local-florist" size={80} color="#ee2b8c" />
           </View>
         </View>
 
         {/* Gift Info Card */}
-        <View style={{ backgroundColor: "#fff", borderRadius: 24, padding: 24, marginTop: 24, borderWidth: 1, borderColor: LINE }}>
-          <Text style={{ fontSize: 12, fontWeight: "700", color: PINK, letterSpacing: 3, marginBottom: 8 }}>NEW GIFT RECEIVED</Text>
-          <Text style={{ fontSize: 24, fontWeight: "800", color: TEXT, lineHeight: 32 }}>Flowers are coming your way!</Text>
+        <View className="bg-white rounded-3xl p-6 mt-6 border border-[#e6dbe0]">
+          <Text className="text-xs font-bold text-[#ee2b8c] tracking-widest mb-2">NEW GIFT RECEIVED</Text>
+          <Text className="text-2xl font-extrabold text-[#181114] leading-8">Flowers are coming your way!</Text>
 
           {/* Quote */}
-          <View style={{ backgroundColor: "rgba(252,231,243,0.5)", borderRadius: 16, padding: 20, marginTop: 16, borderLeftWidth: 4, borderLeftColor: PINK }}>
-            <Text style={{ fontSize: 16, color: TEXT, fontStyle: "italic", lineHeight: 24 }}>
+          <View className="bg-[rgba(252,231,243,0.5)] rounded-2xl p-5 mt-4 border-l-4 border-l-[#ee2b8c]">
+            <Text className="text-base text-[#181114] italic leading-6">
               "Thought you{"'"}d like these to brighten your day. Love you always!"
             </Text>
           </View>
 
           {/* From */}
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 16 }}>
-            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: SOFT, alignItems: "center", justifyContent: "center" }}>
-              <MaterialIcons name="person" size={20} color={TEXT2} />
+          <View className="flex-row items-center gap-3 mt-4">
+            <View className="w-10 h-10 rounded-full bg-[#f5f0f2] items-center justify-center">
+              <MaterialIcons name="person" size={20} color="#8c5f75" />
             </View>
-            <Text style={{ fontSize: 14, color: TEXT2, fontWeight: "500" }}>From your partner</Text>
+            <Text className="text-sm text-[#8c5f75] font-medium">From your partner</Text>
           </View>
         </View>
 
         {/* Delivery Info */}
-        <Text style={{ fontSize: 14, color: TEXT2, textAlign: "center", marginTop: 24, lineHeight: 20 }}>
+        <Text className="text-sm text-[#8c5f75] text-center mt-6 leading-5">
           Your delivery is scheduled for today between{"\n"}2:00 PM and 5:00 PM.
         </Text>
 
         {/* Thank You Section */}
         {!thanksSent ? (
-          <View style={{ marginTop: 32 }}>
+          <View className="mt-8">
             <Button
               title="Say Thank You"
               onPress={() => setThanksSent(true)}
               icon={<MaterialIcons name="chat-bubble" size={22} color="#fff" />}
             />
-            <TouchableOpacity style={{ alignItems: "center", marginTop: 16 }}>
-              <Text style={{ fontSize: 14, fontWeight: "500", color: PINK }}>Not now, remind me later</Text>
+            <TouchableOpacity className="items-center mt-4">
+              <Text className="text-sm font-medium text-[#ee2b8c]">Not now, remind me later</Text>
             </TouchableOpacity>
           </View>
         ) : (
-          <View style={{ backgroundColor: "#fff", borderRadius: 24, padding: 24, marginTop: 32, borderWidth: 1, borderColor: LINE }}>
-            <Text style={{ fontSize: 18, fontWeight: "700", color: PINK, textAlign: "center", marginBottom: 16, letterSpacing: 1 }}>SAY THANKS!</Text>
+          <View className="bg-white rounded-3xl p-6 mt-8 border border-[#e6dbe0]">
+            <Text className="text-lg font-bold text-[#ee2b8c] text-center mb-4 tracking-wider">SAY THANKS!</Text>
 
             {/* Quick responses */}
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+            <View className="flex-row flex-wrap gap-3 justify-center">
               {quickResponses.map((r) => (
-                <TouchableOpacity key={r.label} style={{ flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: BRAND_LIGHT, borderRadius: 999, paddingHorizontal: 20, paddingVertical: 12 }}>
-                  <MaterialIcons name={r.icon as any} size={18} color={PINK} />
-                  <Text style={{ fontSize: 14, fontWeight: "700", color: PINK }}>{r.label}</Text>
+                <TouchableOpacity key={r.label} className="flex-row items-center gap-2 bg-[#fce7f3] rounded-full px-5 py-3">
+                  <MaterialIcons name={r.icon as any} size={18} color="#ee2b8c" />
+                  <Text className="text-sm font-bold text-[#ee2b8c]">{r.label}</Text>
                 </TouchableOpacity>
               ))}
             </View>
 
             {/* Custom note */}
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 20, paddingTop: 20, borderTopWidth: 1, borderTopColor: LINE }}>
+            <View className="flex-row items-center gap-3 mt-5 pt-5 border-t border-[#e6dbe0]">
               <TextInput
-                style={{ flex: 1, backgroundColor: SOFT, borderRadius: 999, paddingHorizontal: 16, paddingVertical: 12, fontSize: 14, color: TEXT }}
+                className="flex-1 bg-[#f5f0f2] rounded-full px-4 py-3 text-sm text-[#181114]"
                 placeholder="Write a sweet note..."
-                placeholderTextColor={TEXT2}
+                placeholderTextColor="#8c5f75"
                 value={note}
                 onChangeText={setNote}
               />
-              <TouchableOpacity style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: PINK, alignItems: "center", justifyContent: "center" }}>
+              <TouchableOpacity className="w-12 h-12 rounded-full bg-[#ee2b8c] items-center justify-center">
                 <MaterialIcons name="send" size={20} color="#fff" />
               </TouchableOpacity>
             </View>

@@ -27,26 +27,26 @@ export default function SelectGoalScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fdf8fa", paddingTop: 48 }}>
+    <View className="flex-1 bg-[#fdf8fa] pt-12">
       <Header showBack stepText="Step 3 of 5" />
       <ProgressDots total={5} current={2} />
 
-      <ScrollView style={{ flex: 1, paddingHorizontal: 16 }} showsVerticalScrollIndicator={false}>
-        <Text style={{ fontSize: 28, fontWeight: "700", color: "#181114", textAlign: "center", paddingTop: 32, letterSpacing: -0.5 }}>
+      <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
+        <Text className="text-[28px] font-bold text-[#181114] text-center pt-8 tracking-tight">
           {"What's your goal?"}
         </Text>
-        <Text style={{ fontSize: 16, color: "#896175", textAlign: "center", marginTop: 8, paddingHorizontal: 32 }}>
+        <Text className="text-base text-[#896175] text-center mt-2 px-8">
           {"We'll customize your experience based on your needs."}
         </Text>
 
-        <View style={{ gap: 16, marginTop: 32 }}>
+        <View className="gap-4 mt-8">
           {goals.map((goal) => (
             <TouchableOpacity key={goal.id} onPress={() => setSelected(goal.id)} activeOpacity={0.8}>
               <Card selected={selected === goal.id}>
-                <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-                  <View style={{ flex: 1, gap: 4 }}>
-                    <Text style={{ fontSize: 18, fontWeight: "700", color: "#181114" }}>{goal.title}</Text>
-                    <Text style={{ fontSize: 14, color: "#896175" }}>{goal.subtitle}</Text>
+                <View className="flex-row items-center justify-between gap-4">
+                  <View className="flex-1 gap-1">
+                    <Text className="text-lg font-bold text-[#181114]">{goal.title}</Text>
+                    <Text className="text-sm text-[#896175]">{goal.subtitle}</Text>
                   </View>
                   <IconCircle name={goal.icon as keyof typeof MaterialIcons.glyphMap} />
                 </View>
@@ -56,7 +56,7 @@ export default function SelectGoalScreen() {
         </View>
       </ScrollView>
 
-      <View style={{ paddingHorizontal: 24, paddingBottom: 40 }}>
+      <View className="px-6 pb-10">
         <Button title="Continue" onPress={handleContinue} />
       </View>
     </View>

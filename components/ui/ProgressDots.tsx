@@ -4,24 +4,13 @@ import type { ProgressDotsProps } from "@/types/interfaces";
 
 export function ProgressDots({ total, current }: ProgressDotsProps) {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        paddingVertical: 8,
-      }}
-    >
+    <View className="flex-row items-center justify-center gap-2 py-2">
       {Array.from({ length: total }).map((_, i) => (
         <View
           key={i}
-          style={{
-            height: 6,
-            borderRadius: 999,
-            width: i === current ? 32 : 6,
-            backgroundColor: i === current ? "#ee2b8c" : "#fce7f3",
-          }}
+          className={`h-1.5 rounded-full ${
+            i === current ? "w-8 bg-[#ee2b8c]" : "w-1.5 bg-[#fce7f3]"
+          }`}
         />
       ))}
     </View>

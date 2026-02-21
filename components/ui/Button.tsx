@@ -1,26 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator, View } from "react-native";
 import type { ButtonProps } from "@/types/interfaces";
-
-const variantBg: Record<string, string> = {
-  primary: "#ee2b8c",
-  secondary: "rgba(238,43,140,0.1)",
-  ghost: "transparent",
-  outline: "transparent",
-};
-
-const variantTextColor: Record<string, string> = {
-  primary: "#ffffff",
-  secondary: "#ee2b8c",
-  ghost: "#8c5f75",
-  outline: "#ee2b8c",
-};
-
-const sizeHeight: Record<string, number> = {
-  sm: 40,
-  md: 48,
-  lg: 56,
-};
 
 export function Button({
   title,
@@ -31,19 +11,36 @@ export function Button({
   loading = false,
   icon,
 }: ButtonProps) {
+  const bgClass =
+    variant === "primary"
+      ? "bg-[#ee2b8c]"
+      : variant === "secondary"
+      ? "bg-[rgba(238,43,140,0.1)]"
+      : "bg-transparent";
+
+  const textColorClass =
+    variant === "primary"
+      ? "text-white"
+      : variant === "secondary" || variant === "outline"
+      ? "text-[#ee2b8c]"
+      : "text-[#8c5f75]";
+
+  const heightClass =
+    size === "lg" ? "h-14" : size === "md" ? "h-12" : "h-10";
+
+  const textSizeClass =
+    size === "lg" ? "text-lg" : size === "md" ? "text-base" : "text-sm";
+
+  const borderClass =
+    variant === "outline" ? "border-2 border-[#ee2b8c]" : "";
+
   return (
     <TouchableOpacity
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        borderRadius: 9999,
-        width: "100%",
-        height: sizeHeight[size],
-        backgroundColor: variantBg[variant],
-        opacity: disabled ? 0.5 : 1,
-        ...(variant === "primary"
+      className={`flex-row items-center justify-center gap-2 rounded-full w-full ${bgClass} ${heightClass} ${borderClass} ${
+        disabled ? "opacity-50" : ""
+      }`}
+      style={
+        variant === "primary"
           ? {
               shadowColor: "#ee2b8c",
               shadowOffset: { width: 0, height: 4 },
@@ -51,11 +48,8 @@ export function Button({
               shadowRadius: 10,
               elevation: 6,
             }
-          : {}),
-        ...(variant === "outline"
-          ? { borderWidth: 2, borderColor: "#ee2b8c" }
-          : {}),
-      }}
+          : undefined
+      }
       onPress={onPress}
       disabled={disabled || loading}
       activeOpacity={0.85}
@@ -67,13 +61,7 @@ export function Button({
       ) : (
         <>
           {icon}
-          <Text
-            style={{
-              fontWeight: "700",
-              color: variantTextColor[variant],
-              fontSize: size === "lg" ? 18 : size === "md" ? 16 : 14,
-            }}
-          >
+          <Text className={`font-bold ${textColorClass} ${textSizeClass}`}>
             {title}
           </Text>
         </>
