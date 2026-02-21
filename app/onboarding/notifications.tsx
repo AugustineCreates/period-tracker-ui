@@ -23,19 +23,47 @@ export default function NotificationsScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white pt-14">
+    <View style={{ flex: 1, backgroundColor: "#fff", paddingTop: 56 }}>
       <ProgressDots total={5} current={4} />
 
       {/* Hero */}
-      <View className="flex-1 items-center justify-center">
-        <View className="w-72 h-72 rounded-full bg-brand-light/50 items-center justify-center">
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ width: 288, height: 288, borderRadius: 144, backgroundColor: "rgba(252,231,243,0.5)", alignItems: "center", justifyContent: "center" }}>
           {/* Dashed ring */}
-          <View className="absolute w-[270px] h-[270px] rounded-full border-2 border-dashed border-brand-light" />
+          <View style={{ position: "absolute", width: 270, height: 270, borderRadius: 135, borderWidth: 2, borderStyle: "dashed", borderColor: "#fce7f3" }} />
           {/* Icon card */}
-          <View className="w-48 h-48 rounded-4xl bg-white items-center justify-center shadow-xl">
+          <View style={{
+            width: 192,
+            height: 192,
+            borderRadius: 32,
+            backgroundColor: "#fff",
+            alignItems: "center",
+            justifyContent: "center",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 10 },
+            shadowOpacity: 0.15,
+            shadowRadius: 20,
+            elevation: 10,
+          }}>
             <MaterialIcons name="notifications-active" size={80} color="#ee2b8c" />
             {/* Badge */}
-            <View className="absolute -top-3 -right-2 w-12 h-12 rounded-full bg-brand items-center justify-center shadow-lg shadow-brand/30 rotate-12">
+            <View style={{
+              position: "absolute",
+              top: -12,
+              right: -8,
+              width: 48,
+              height: 48,
+              borderRadius: 24,
+              backgroundColor: "#ee2b8c",
+              alignItems: "center",
+              justifyContent: "center",
+              shadowColor: "#ee2b8c",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 6,
+              transform: [{ rotate: "12deg" }],
+            }}>
               <MaterialIcons name="card-giftcard" size={22} color="#fff" />
             </View>
           </View>
@@ -43,20 +71,20 @@ export default function NotificationsScreen() {
       </View>
 
       {/* Text */}
-      <View className="px-8 pb-6">
-        <Text className="text-3xl font-bold text-content text-center tracking-tight">
+      <View style={{ paddingHorizontal: 32, paddingBottom: 24 }}>
+        <Text style={{ fontSize: 28, fontWeight: "700", color: "#181114", textAlign: "center", letterSpacing: -0.5 }}>
           Never be surprised again.
         </Text>
-        <Text className="text-lg text-content/60 text-center mt-4 leading-7">
+        <Text style={{ fontSize: 18, color: "rgba(24,17,20,0.6)", textAlign: "center", marginTop: 16, lineHeight: 28 }}>
           Enable notifications for period predictions and health tips tailored for you.
         </Text>
       </View>
 
       {/* Actions */}
-      <View className="px-8 pb-12 gap-3">
+      <View style={{ paddingHorizontal: 32, paddingBottom: 48, gap: 12 }}>
         <Button title="Enable Notifications" onPress={handleEnable} />
-        <TouchableOpacity className="items-center py-3" onPress={handleSkip}>
-          <Text className="text-base font-medium text-content/40">Maybe Later</Text>
+        <TouchableOpacity style={{ alignItems: "center", paddingVertical: 12 }} onPress={handleSkip}>
+          <Text style={{ fontSize: 16, fontWeight: "500", color: "rgba(24,17,20,0.4)" }}>Maybe Later</Text>
         </TouchableOpacity>
       </View>
     </View>

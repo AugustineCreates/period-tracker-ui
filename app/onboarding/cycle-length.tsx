@@ -20,44 +20,56 @@ export default function CycleLengthScreen() {
   };
 
   return (
-    <View className="flex-1 bg-surface pt-12">
+    <View style={{ flex: 1, backgroundColor: "#fdf8fa", paddingTop: 48 }}>
       <Header showBack />
-      <View className="items-center -mt-10 mb-2">
-        <Text className="text-[10px] font-semibold text-brand-muted uppercase tracking-[2px]">
+      <View style={{ alignItems: "center", marginTop: -40, marginBottom: 8 }}>
+        <Text style={{ fontSize: 10, fontWeight: "600", color: "#8c5f75", textTransform: "uppercase", letterSpacing: 2 }}>
           Personalization
         </Text>
       </View>
       <ProgressDots total={5} current={3} />
 
-      <View className="flex-1 px-6">
-        <Text className="text-3xl font-bold text-content text-center pt-6 tracking-tight">
+      <View style={{ flex: 1, paddingHorizontal: 24 }}>
+        <Text style={{ fontSize: 28, fontWeight: "700", color: "#181114", textAlign: "center", paddingTop: 24, letterSpacing: -0.5 }}>
           How long is your cycle usually?
         </Text>
-        <Text className="text-base text-content/70 text-center mt-2 leading-6 px-4">
+        <Text style={{ fontSize: 16, color: "rgba(24,17,20,0.7)", textAlign: "center", marginTop: 8, lineHeight: 24, paddingHorizontal: 16 }}>
           Knowing your cycle length helps us predict your fertile window and next period accurately.
         </Text>
 
         {/* Value Display */}
-        <View className="items-center justify-center py-12">
-          <View className="bg-white rounded-2xl px-10 py-6 items-center border border-line-light shadow-lg shadow-brand/5">
-            <Text className="text-5xl font-bold text-brand tracking-tight">{cycleLength}</Text>
-            <Text className="text-lg font-semibold text-brand-muted uppercase tracking-[3px]">Days</Text>
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 48 }}>
+          <View style={{
+            backgroundColor: "#fff",
+            borderRadius: 16,
+            paddingHorizontal: 40,
+            paddingVertical: 24,
+            alignItems: "center",
+            borderWidth: 1,
+            borderColor: "#f0e8ec",
+            shadowColor: "#ee2b8c",
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.05,
+            shadowRadius: 10,
+            elevation: 4,
+          }}>
+            <Text style={{ fontSize: 48, fontWeight: "700", color: "#ee2b8c", letterSpacing: -1 }}>{cycleLength}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "#8c5f75", textTransform: "uppercase", letterSpacing: 3 }}>Days</Text>
           </View>
         </View>
 
         {/* Custom Slider */}
-        <View className="px-4 relative">
-          <View className="h-2 bg-[#e6dbe0] rounded-full relative">
-            <View className="absolute left-0 top-0 h-2 bg-brand rounded-full" style={{ width: `${pct}%` as any }} />
+        <View style={{ paddingHorizontal: 16, position: "relative" }}>
+          <View style={{ height: 8, backgroundColor: "#e6dbe0", borderRadius: 999, position: "relative" }}>
+            <View style={{ position: "absolute", left: 0, top: 0, height: 8, backgroundColor: "#ee2b8c", borderRadius: 999, width: `${pct}%` as any }} />
             <View
-              className="absolute -top-3 w-8 h-8 rounded-full bg-brand"
-              style={{ left: `${pct}%` as any, marginLeft: -16 }}
+              style={{ position: "absolute", top: -12, width: 32, height: 32, borderRadius: 16, backgroundColor: "#ee2b8c", left: `${pct}%` as any, marginLeft: -16 }}
             />
           </View>
-          <View className="flex-row justify-between mt-4">
-            <Text className="text-[10px] text-content/40 font-medium">21 Days</Text>
-            <Text className="text-[10px] text-content/40 font-medium">30 Days</Text>
-            <Text className="text-[10px] text-content/40 font-medium">45 Days</Text>
+          <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 16 }}>
+            <Text style={{ fontSize: 10, color: "rgba(24,17,20,0.4)", fontWeight: "500" }}>21 Days</Text>
+            <Text style={{ fontSize: 10, color: "rgba(24,17,20,0.4)", fontWeight: "500" }}>30 Days</Text>
+            <Text style={{ fontSize: 10, color: "rgba(24,17,20,0.4)", fontWeight: "500" }}>45 Days</Text>
           </View>
           {Platform.OS === "web" && (
             <input
@@ -71,12 +83,12 @@ export default function CycleLengthScreen() {
           )}
         </View>
 
-        <Text className="text-xs text-content/50 italic text-center mt-8">
+        <Text style={{ fontSize: 12, color: "rgba(24,17,20,0.5)", fontStyle: "italic", textAlign: "center", marginTop: 32 }}>
           {"Don't worry, you can always change this later in settings."}
         </Text>
       </View>
 
-      <View className="px-6 pb-10">
+      <View style={{ paddingHorizontal: 24, paddingBottom: 40 }}>
         <Button
           title="Continue"
           onPress={handleContinue}

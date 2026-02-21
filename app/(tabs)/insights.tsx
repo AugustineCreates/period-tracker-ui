@@ -4,6 +4,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useApp } from "@/context/AppContext";
 import { getCycleDay, getCyclePhase, getPhaseLabel, getPhaseInsight, getCycleProgress } from "@/utils/cycle";
 
+const PINK = "#ee2b8c";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const LINE = "#e6dbe0";
+const SOFT = "#f5f0f2";
+
 export default function InsightsScreen() {
   const { onboardingData, dailyLogs } = useApp();
   const lastPeriod = onboardingData.lastPeriodDate || new Date().toISOString().split("T")[0];
@@ -13,7 +19,7 @@ export default function InsightsScreen() {
   const progress = getCycleProgress(cycleDay, cycleLen);
 
   const insights = [
-    { icon: "favorite" as const, label: "CYCLE HEALTH", title: getPhaseLabel(phase), body: getPhaseInsight(phase), color: "#ee2b8c" },
+    { icon: "favorite" as const, label: "CYCLE HEALTH", title: getPhaseLabel(phase), body: getPhaseInsight(phase), color: PINK },
     { icon: "water-drop" as const, label: "HYDRATION", title: "Stay Hydrated", body: "Aim for 8-10 glasses of water today. Proper hydration helps reduce bloating and headaches.", color: "#3b82f6" },
     { icon: "bedtime" as const, label: "SLEEP", title: "Rest Well", body: "During this phase, you may need 7-9 hours of quality sleep. Try winding down an hour before bed.", color: "#6366f1" },
     { icon: "fitness-center" as const, label: "EXERCISE", title: phase === "menstrual" ? "Gentle Movement" : "Active Day", body: phase === "menstrual" ? "Light yoga or walking is ideal during your period." : "Your energy levels support moderate to high intensity workouts!", color: "#22c55e" },
@@ -21,59 +27,58 @@ export default function InsightsScreen() {
   ];
 
   return (
-    <View className="flex-1 bg-surface">
-      <View className="px-4 pt-14 pb-4">
-        <Text className="text-3xl font-extrabold text-content tracking-tight">Insights</Text>
-        <Text className="text-sm text-content-secondary mt-1">Personalized tips for Day {cycleDay}</Text>
+    <View style={{ flex: 1, backgroundColor: "#fdf8fa" }}>
+      <View style={{ paddingHorizontal: 16, paddingTop: 56, paddingBottom: 16 }}>
+        <Text style={{ fontSize: 28, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>Insights</Text>
+        <Text style={{ fontSize: 14, color: TEXT2, marginTop: 4 }}>Personalized tips for Day {cycleDay}</Text>
       </View>
 
-      <ScrollView className="px-4" contentContainerClassName="gap-4 pb-32" showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ paddingHorizontal: 16 }} contentContainerStyle={{ gap: 16, paddingBottom: 128 }} showsVerticalScrollIndicator={false}>
         {/* Summary */}
-        <View className="bg-brand rounded-4xl p-5 shadow-lg shadow-brand/30">
-          <View className="flex-row justify-between items-center mb-4">
+        <View style={{ backgroundColor: PINK, borderRadius: 24, padding: 20, shadowColor: PINK, shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 8 }}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
             <View>
-              <Text className="text-lg font-bold text-white">{getPhaseLabel(phase)}</Text>
-              <Text className="text-xs text-white/70 mt-0.5">Day {cycleDay} of {cycleLen}</Text>
+              <Text style={{ fontSize: 18, fontWeight: "700", color: "#fff" }}>{getPhaseLabel(phase)}</Text>
+              <Text style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>Day {cycleDay} of {cycleLen}</Text>
             </View>
-            <View className="w-12 h-12 rounded-full bg-white/20 items-center justify-center">
-              <Text className="text-sm font-bold text-white">{progress}%</Text>
+            <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" }}>
+              <Text style={{ fontSize: 14, fontWeight: "700", color: "#fff" }}>{progress}%</Text>
             </View>
           </View>
-            <View className="h-2 rounded-full bg-white/20 overflow-hidden">
-            <View className="h-full rounded-full bg-white" style={{ width: `${progress}%` as any }} />
+          <View style={{ height: 8, borderRadius: 4, backgroundColor: "rgba(255,255,255,0.2)", overflow: "hidden" }}>
+            <View style={{ height: "100%", borderRadius: 4, backgroundColor: "#fff", width: `${progress}%` as any }} />
           </View>
         </View>
 
         {/* Cards */}
         {insights.map((ins, i) => (
-          <View key={i} className="bg-white rounded-3xl p-5 border border-line gap-2">
-            <View className="flex-row items-center gap-2 mb-1">
-              <View className="w-9 h-9 rounded-xl items-center justify-center" style={{ backgroundColor: `${ins.color}15` as any }}>
+          <View key={i} style={{ backgroundColor: "#fff", borderRadius: 24, padding: 20, borderWidth: 1, borderColor: LINE, gap: 8 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <View style={{ width: 36, height: 36, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: `${ins.color}15` }}>
                 <MaterialIcons name={ins.icon} size={22} color={ins.color} />
               </View>
-              <Text className="text-[10px] font-bold tracking-widest" style={{ color: ins.color } as any}>{ins.label}</Text>
+              <Text style={{ fontSize: 10, fontWeight: "700", letterSpacing: 2, color: ins.color }}>{ins.label}</Text>
             </View>
-            <Text className="text-lg font-bold text-content">{ins.title}</Text>
-            <Text className="text-sm text-content-secondary leading-5">{ins.body}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "700", color: TEXT }}>{ins.title}</Text>
+            <Text style={{ fontSize: 14, color: TEXT2, lineHeight: 20 }}>{ins.body}</Text>
           </View>
         ))}
 
         {/* Log Summary */}
-        <View className="bg-surface-soft rounded-4xl p-5 border border-line-light">
-          <Text className="text-base font-bold text-content text-center mb-4">Your Logging Streak</Text>
-          <View className="flex-row items-center justify-around">
+        <View style={{ backgroundColor: SOFT, borderRadius: 24, padding: 20, borderWidth: 1, borderColor: "#f0e8ec" }}>
+          <Text style={{ fontSize: 16, fontWeight: "700", color: TEXT, textAlign: "center", marginBottom: 16 }}>Your Logging Streak</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-around" }}>
             {[{ n: dailyLogs.length, l: "Days Logged" }, { n: cycleLen, l: "Cycle Length" }, { n: 5, l: "Period Days" }].map((s, i) => (
               <React.Fragment key={s.l}>
-                {i > 0 && <View className="w-px h-10 bg-line-light" />}
-                <View className="items-center gap-1">
-                  <Text className="text-2xl font-extrabold text-brand">{s.n}</Text>
-                  <Text className="text-xs text-content-secondary font-medium">{s.l}</Text>
+                {i > 0 && <View style={{ width: 1, height: 40, backgroundColor: "#f0e8ec" }} />}
+                <View style={{ alignItems: "center", gap: 4 }}>
+                  <Text style={{ fontSize: 24, fontWeight: "800", color: PINK }}>{s.n}</Text>
+                  <Text style={{ fontSize: 12, color: TEXT2, fontWeight: "500" }}>{s.l}</Text>
                 </View>
               </React.Fragment>
             ))}
           </View>
         </View>
-
       </ScrollView>
     </View>
   );

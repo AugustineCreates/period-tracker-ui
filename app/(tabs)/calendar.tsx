@@ -10,6 +10,15 @@ import {
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+const PINK = "#ee2b8c";
+const BG = "#fdf8fa";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const BRAND_LIGHT = "#fce7f3";
+const SOFT = "#f5f0f2";
+const LINE = "#e6dbe0";
+const FERTILE_BG = "#e8f5e9";
+
 export default function CalendarScreen() {
   const { onboardingData } = useApp();
   const lastPeriod = onboardingData.lastPeriodDate || new Date().toISOString().split("T")[0];
@@ -27,6 +36,8 @@ export default function CalendarScreen() {
   const next = () => { if (cMonth === 11) { setCMonth(0); setCYear(cYear + 1); } else setCMonth(cMonth + 1); };
   const isTd = (d: number) => d === today.getDate() && cMonth === today.getMonth() && cYear === today.getFullYear();
 
+  const cellBase: any = { width: "14.28%", height: 48, alignItems: "center", justifyContent: "center" };
+
   const renderDay = (day: number) => {
     const period = isPeriodDay(day, cMonth, cYear, lastPeriod, cycleLen);
     const fertile = isFertileDay(day, cMonth, cYear, lastPeriod, cycleLen);
@@ -35,142 +46,117 @@ export default function CalendarScreen() {
     const td = isTd(day);
 
     if (period) return (
-      <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center bg-brand-light" onPress={() => setSelDay(day)}>
-        <View className="w-9 h-9 rounded-full bg-brand items-center justify-center">
-          <Text className="text-sm font-bold text-white">{day}</Text>
+      <TouchableOpacity key={day} style={{ ...cellBase, backgroundColor: BRAND_LIGHT }} onPress={() => setSelDay(day)}>
+        <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: PINK, alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ fontSize: 14, fontWeight: "700", color: "#fff" }}>{day}</Text>
         </View>
       </TouchableOpacity>
     );
     if (predicted) return (
-      <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center" onPress={() => setSelDay(day)}>
-        <View className="w-8 h-8 rounded-full border-2 border-dashed border-brand-muted/40 items-center justify-center">
-          <Text className="text-sm font-semibold text-brand-muted">{day}</Text>
+      <TouchableOpacity key={day} style={cellBase} onPress={() => setSelDay(day)}>
+        <View style={{ width: 32, height: 32, borderRadius: 16, borderWidth: 2, borderStyle: "dashed", borderColor: "rgba(140,95,117,0.4)", alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ fontSize: 14, fontWeight: "600", color: TEXT2 }}>{day}</Text>
         </View>
       </TouchableOpacity>
     );
     if (fertile) return (
-      <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center bg-surface-fertile" onPress={() => setSelDay(day)}>
-        <Text className="text-sm font-semibold text-brand">{day}</Text>
-        {ovul && <MaterialIcons name="favorite" size={8} color="#ee2b8c" className="absolute bottom-1" />}
+      <TouchableOpacity key={day} style={{ ...cellBase, backgroundColor: FERTILE_BG }} onPress={() => setSelDay(day)}>
+        <Text style={{ fontSize: 14, fontWeight: "600", color: PINK }}>{day}</Text>
+        {ovul && <MaterialIcons name="favorite" size={8} color={PINK} style={{ position: "absolute", bottom: 4 }} />}
       </TouchableOpacity>
     );
     if (td) return (
-      <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center border-2 border-brand rounded-xl" onPress={() => setSelDay(day)}>
-        <View className="w-9 h-9 rounded-full bg-black items-center justify-center">
-          <Text className="text-sm font-bold text-white">{day}</Text>
+      <TouchableOpacity key={day} style={{ ...cellBase, borderWidth: 2, borderColor: PINK, borderRadius: 12 }} onPress={() => setSelDay(day)}>
+        <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: "#000", alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ fontSize: 14, fontWeight: "700", color: "#fff" }}>{day}</Text>
         </View>
       </TouchableOpacity>
     );
     return (
-      <TouchableOpacity key={day} className="w-[14.28%] h-12 items-center justify-center" onPress={() => setSelDay(day)}>
-        <Text className={`text-sm font-semibold ${selDay === day ? "text-brand font-bold" : "text-content"}`}>{day}</Text>
+      <TouchableOpacity key={day} style={cellBase} onPress={() => setSelDay(day)}>
+        <Text style={{ fontSize: 14, fontWeight: "600", color: selDay === day ? PINK : TEXT }}>{day}</Text>
       </TouchableOpacity>
     );
   };
 
   return (
-    <View className="flex-1 bg-surface">
+    <View style={{ flex: 1, backgroundColor: BG }}>
       {/* Header */}
-      <View className="flex-row items-center justify-between px-4 pt-14 pb-4 bg-white/80">
-        <TouchableOpacity className="w-10 h-10 rounded-full items-center justify-center" onPress={prev}>
-          <MaterialIcons name="chevron-left" size={24} color="#181114" />
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, paddingTop: 56, paddingBottom: 16, backgroundColor: "rgba(255,255,255,0.8)" }}>
+        <TouchableOpacity style={{ width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center" }} onPress={prev}>
+          <MaterialIcons name="chevron-left" size={24} color={TEXT} />
         </TouchableOpacity>
-        <View className="items-center">
-          <Text className="text-lg font-extrabold text-content tracking-tight">{MONTHS[cMonth]} {cYear}</Text>
-          <Text className="text-[10px] font-bold text-brand tracking-[3px]">{getPhaseLabel(phase).toUpperCase()}</Text>
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ fontSize: 18, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>{MONTHS[cMonth]} {cYear}</Text>
+          <Text style={{ fontSize: 10, fontWeight: "700", color: PINK, letterSpacing: 3 }}>{getPhaseLabel(phase).toUpperCase()}</Text>
         </View>
-        <TouchableOpacity className="w-10 h-10 rounded-full bg-brand items-center justify-center shadow-lg shadow-brand/30" onPress={next}>
+        <TouchableOpacity style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: PINK, alignItems: "center", justifyContent: "center", shadowColor: PINK, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 6 }} onPress={next}>
           <MaterialIcons name="add" size={22} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="px-4" contentContainerClassName="pb-32" showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ paddingHorizontal: 16 }} contentContainerStyle={{ paddingBottom: 128 }} showsVerticalScrollIndicator={false}>
         {/* Calendar */}
-        <View className="bg-white rounded-4xl p-4 shadow-sm border border-line">
-          <View className="flex-row mb-2">
+        <View style={{ backgroundColor: "#fff", borderRadius: 24, padding: 16, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1, borderWidth: 1, borderColor: LINE }}>
+          <View style={{ flexDirection: "row", marginBottom: 8 }}>
             {DAYS.map((d, i) => (
-              <Text key={i} className="flex-1 text-center text-[11px] font-bold text-black/30 uppercase">{d}</Text>
+              <Text key={i} style={{ flex: 1, textAlign: "center", fontSize: 11, fontWeight: "700", color: "rgba(0,0,0,0.3)", textTransform: "uppercase" }}>{d}</Text>
             ))}
           </View>
-          <View className="flex-row flex-wrap">
-            {Array.from({ length: firstDay }).map((_, i) => <View key={`e-${i}`} className="w-[14.28%] h-12" />)}
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {Array.from({ length: firstDay }).map((_, i) => <View key={`e-${i}`} style={{ width: "14.28%", height: 48 } as any} />)}
             {Array.from({ length: daysInMonth }).map((_, i) => renderDay(i + 1))}
           </View>
           {/* Legend */}
-          <View className="flex-row gap-4 pt-4 mt-4 border-t border-black/5">
-            <View className="flex-row items-center gap-1.5">
-              <View className="w-2.5 h-2.5 rounded-full bg-brand" />
-              <Text className="text-[10px] font-medium text-black/40 tracking-widest">PERIOD</Text>
+          <View style={{ flexDirection: "row", gap: 16, paddingTop: 16, marginTop: 16, borderTopWidth: 1, borderTopColor: "rgba(0,0,0,0.05)" }}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: PINK }} />
+              <Text style={{ fontSize: 10, fontWeight: "500", color: "rgba(0,0,0,0.4)", letterSpacing: 2 }}>PERIOD</Text>
             </View>
-            <View className="flex-row items-center gap-1.5">
-              <View className="w-2.5 h-2.5 rounded-full bg-surface-fertile" />
-              <Text className="text-[10px] font-medium text-black/40 tracking-widest">FERTILE</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: FERTILE_BG }} />
+              <Text style={{ fontSize: 10, fontWeight: "500", color: "rgba(0,0,0,0.4)", letterSpacing: 2 }}>FERTILE</Text>
             </View>
-            <View className="flex-row items-center gap-1.5">
-              <View className="w-2.5 h-2.5 rounded-full border-[1.5px] border-dashed border-brand-muted/40" />
-              <Text className="text-[10px] font-medium text-black/40 tracking-widest">PREDICTED</Text>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+              <View style={{ width: 10, height: 10, borderRadius: 5, borderWidth: 1.5, borderStyle: "dashed", borderColor: "rgba(140,95,117,0.4)" }} />
+              <Text style={{ fontSize: 10, fontWeight: "500", color: "rgba(0,0,0,0.4)", letterSpacing: 2 }}>PREDICTED</Text>
             </View>
           </View>
         </View>
 
         {/* Detail */}
-        <View className="mt-4 gap-4">
-          <View className="flex-row justify-between items-center">
-            <Text className="text-lg font-extrabold text-content tracking-tight">
+        <View style={{ marginTop: 16, gap: 16 }}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={{ fontSize: 18, fontWeight: "800", color: TEXT, letterSpacing: -0.5 }}>
               Today, {MONTHS[cMonth].slice(0, 3)} {selDay}
             </Text>
-            <TouchableOpacity className="bg-brand-light px-3 py-1.5 rounded-full">
-              <Text className="text-[10px] font-bold text-brand">Edit Log</Text>
+            <TouchableOpacity style={{ backgroundColor: BRAND_LIGHT, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 }}>
+              <Text style={{ fontSize: 10, fontWeight: "700", color: PINK }}>Edit Log</Text>
             </TouchableOpacity>
           </View>
 
-          <View className="bg-surface-soft rounded-4xl p-5 border border-line-light">
-            <View className="flex-row gap-4 items-start">
-              <View className="w-11 h-11 rounded-xl bg-white items-center justify-center shadow-sm">
-                <MaterialIcons name="lightbulb" size={22} color="#ee2b8c" />
+          <View style={{ backgroundColor: SOFT, borderRadius: 24, padding: 20, borderWidth: 1, borderColor: "#f0e8ec" }}>
+            <View style={{ flexDirection: "row", gap: 16, alignItems: "flex-start" }}>
+              <View style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: "#fff", alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1 }}>
+                <MaterialIcons name="lightbulb" size={22} color={PINK} />
               </View>
-              <View className="flex-1">
-                <Text className="text-sm font-bold text-content mb-1">{getPhaseLabel(phase)}</Text>
-                <Text className="text-xs text-black/50 leading-5">{getPhaseInsight(phase)}</Text>
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginBottom: 4 }}>{getPhaseLabel(phase)}</Text>
+                <Text style={{ fontSize: 12, color: "rgba(0,0,0,0.5)", lineHeight: 20 }}>{getPhaseInsight(phase)}</Text>
               </View>
             </View>
           </View>
 
           {/* Chips */}
-          <Text className="text-[11px] font-bold text-black/30 tracking-[3px]">LOGGED SYMPTOMS</Text>
-          <View className="flex-row flex-wrap gap-2">
-            {[
-              { label: "Cramps: Mild", icon: "bolt", bg: "bg-line" },
-              { label: "Mood: Happy", icon: "sentiment-satisfied", bg: "bg-amber-100" },
-              { label: "Flow: None", icon: "opacity", bg: "bg-blue-100" },
-            ].map((c) => (
-              <View key={c.label} className="flex-row items-center gap-2 bg-white rounded-full pl-1 pr-4 h-10 border border-black/5 shadow-sm">
-                <View className={`w-7 h-7 rounded-full items-center justify-center ${c.bg}`}>
-                  <MaterialIcons name={c.icon as any} size={14} color={c.icon === "bolt" ? "#ee2b8c" : c.icon === "sentiment-satisfied" ? "#d97706" : "#2563eb"} />
-                </View>
-                <Text className="text-sm font-semibold text-content">{c.label}</Text>
+          <Text style={{ fontSize: 11, fontWeight: "700", color: "rgba(0,0,0,0.3)", letterSpacing: 3 }}>LOGGED SYMPTOMS</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+            {["Headache", "Cramps", "Fatigue"].map((s) => (
+              <View key={s} style={{ flexDirection: "row", alignItems: "center", gap: 6, backgroundColor: "#fff", borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8, borderWidth: 1, borderColor: LINE }}>
+                <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: PINK }} />
+                <Text style={{ fontSize: 12, fontWeight: "600", color: TEXT }}>{s}</Text>
               </View>
             ))}
           </View>
-
-          {/* Tracking Bars */}
-          {[
-            { icon: "water-drop", title: "Water Intake", val: "8/10 glasses", pct: 80, color: "#3b82f6" },
-            { icon: "bedtime", title: "Sleep", val: "7.5/8 hrs", pct: 93, color: "#6366f1" },
-          ].map((t) => (
-            <View key={t.title} className="bg-white rounded-4xl p-4 border border-black/5 shadow-sm">
-              <View className="flex-row justify-between items-center mb-3">
-                <View className="flex-row items-center gap-2">
-                  <MaterialIcons name={t.icon as any} size={20} color={t.color} />
-                  <Text className="text-sm font-bold text-content">{t.title}</Text>
-                </View>
-                <Text className="text-xs font-bold text-brand">{t.val}</Text>
-              </View>
-              <View className="h-2.5 rounded-full bg-black/5 overflow-hidden">
-                <View className="h-full rounded-full" style={{ width: `${t.pct}%` as any, backgroundColor: t.color }} />
-              </View>
-            </View>
-          ))}
         </View>
       </ScrollView>
     </View>

@@ -5,12 +5,15 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useApp } from "@/context/AppContext";
 import { Button } from "@/components/ui/Button";
 import {
-  getCycleDay,
-  getCyclePhase,
-  getPhaseLabel,
-  getDaysUntilPeriod,
-  getPhaseInsight,
+  getCycleDay, getCyclePhase, getPhaseLabel, getDaysUntilPeriod,
 } from "@/utils/cycle";
+
+const PINK = "#ee2b8c";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const LINE = "#e6dbe0";
+const SOFT = "#f5f0f2";
+const BRAND_LIGHT = "#fce7f3";
 
 const symptoms = [
   { label: "Low Energy", icon: "battery-2-bar" },
@@ -21,146 +24,96 @@ const symptoms = [
 export default function PartnerDashboardScreen() {
   const router = useRouter();
   const { userName, onboardingData } = useApp();
-  const lastPeriod =
-    onboardingData.lastPeriodDate || new Date().toISOString().split("T")[0];
+  const lastPeriod = onboardingData.lastPeriodDate || new Date().toISOString().split("T")[0];
   const cycleLength = onboardingData.cycleLength || 28;
   const cycleDay = getCycleDay(lastPeriod, cycleLength);
   const phase = getCyclePhase(cycleDay, cycleLength);
   const daysUntil = getDaysUntilPeriod(cycleDay, cycleLength);
 
   return (
-    <View className="flex-1 bg-surface pt-12">
+    <View style={{ flex: 1, backgroundColor: "#fdf8fa", paddingTop: 48 }}>
       {/* Top Bar */}
-      <View className="flex-row items-center justify-between px-4 pb-2">
-        <View className="flex-row items-center gap-3">
-          <View className="w-11 h-11 rounded-full bg-brand-light items-center justify-center">
-            <Text className="text-lg font-bold text-brand">
-              {userName.charAt(0)}
-            </Text>
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, paddingBottom: 8 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+          <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: BRAND_LIGHT, alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ fontSize: 18, fontWeight: "700", color: PINK }}>{userName.charAt(0)}</Text>
           </View>
-          <View>
-            <Text className="text-lg font-bold text-content">
-              {userName}{"'"}s Cycle
-            </Text>
-          </View>
+          <Text style={{ fontSize: 18, fontWeight: "700", color: TEXT }}>{userName}{"'"}s Cycle</Text>
         </View>
-        <TouchableOpacity className="w-11 h-11 items-center justify-center">
-          <MaterialIcons name="notifications-none" size={24} color="#181114" />
+        <TouchableOpacity style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}>
+          <MaterialIcons name="notifications-none" size={24} color={TEXT} />
         </TouchableOpacity>
       </View>
 
-      <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ paddingHorizontal: 16 }} showsVerticalScrollIndicator={false}>
         {/* Countdown Card */}
-        <View className="bg-brand rounded-3xl mt-4 overflow-hidden">
-          <View className="items-center pt-10 pb-6">
-            <Text className="text-7xl font-extrabold text-white">
-              {daysUntil}
-            </Text>
-            <Text className="text-sm font-bold text-white/80 tracking-[3px] mt-1">
-              DAYS TO GO
-            </Text>
+        <View style={{ backgroundColor: PINK, borderRadius: 24, marginTop: 16, overflow: "hidden" }}>
+          <View style={{ alignItems: "center", paddingTop: 40, paddingBottom: 24 }}>
+            <Text style={{ fontSize: 72, fontWeight: "800", color: "#fff" }}>{daysUntil}</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: "rgba(255,255,255,0.8)", letterSpacing: 3, marginTop: 4 }}>DAYS TO GO</Text>
           </View>
-          <View className="bg-white rounded-t-3xl px-5 pt-5 pb-6">
-            <Text className="text-xl font-bold text-content">
-              Period starts in {daysUntil} days
-            </Text>
-            <Text className="text-sm font-bold text-brand mt-1 tracking-widest">
-              PHASE: {getPhaseLabel(phase).toUpperCase()}
-            </Text>
-            <Text className="text-sm text-content-secondary mt-2 leading-5">
-              The cycle is currently on day {cycleDay}. {userName} might be
-              feeling a bit more tired or sensitive than usual.
+          <View style={{ backgroundColor: "#fff", borderTopLeftRadius: 24, borderTopRightRadius: 24, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 24 }}>
+            <Text style={{ fontSize: 20, fontWeight: "700", color: TEXT }}>Period starts in {daysUntil} days</Text>
+            <Text style={{ fontSize: 14, fontWeight: "700", color: PINK, marginTop: 4, letterSpacing: 2 }}>PHASE: {getPhaseLabel(phase).toUpperCase()}</Text>
+            <Text style={{ fontSize: 14, color: TEXT2, marginTop: 8, lineHeight: 20 }}>
+              The cycle is currently on day {cycleDay}. {userName} might be feeling a bit more tired or sensitive than usual.
             </Text>
           </View>
         </View>
 
         {/* Current Mood */}
-        <Text className="text-xl font-bold text-content mt-8 mb-3">
-          Current Mood
-        </Text>
-        <View className="bg-surface-soft rounded-3xl p-5 flex-row items-center">
-          <View className="flex-1">
-            <View className="flex-row items-center gap-2 mb-1">
-              <MaterialIcons
-                name="sentiment-dissatisfied"
-                size={20}
-                color="#8c5f75"
-              />
-              <Text className="text-base font-bold text-content">
-                Feeling Sensitive
-              </Text>
+        <Text style={{ fontSize: 20, fontWeight: "700", color: TEXT, marginTop: 32, marginBottom: 12 }}>Current Mood</Text>
+        <View style={{ backgroundColor: SOFT, borderRadius: 24, padding: 20, flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flex: 1 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <MaterialIcons name="sentiment-dissatisfied" size={20} color={TEXT2} />
+              <Text style={{ fontSize: 16, fontWeight: "700", color: TEXT }}>Feeling Sensitive</Text>
             </View>
-            <Text className="text-sm text-content-secondary leading-5 mt-1">
-              <Text className="font-bold text-brand">Pro-tip:</Text> She might
-              need some extra chocolate, a warm hug, or a movie night in!
+            <Text style={{ fontSize: 14, color: TEXT2, lineHeight: 20, marginTop: 4 }}>
+              <Text style={{ fontWeight: "700", color: PINK }}>Pro-tip:</Text> She might need some extra chocolate, a warm hug, or a movie night in!
             </Text>
           </View>
-          <View className="w-20 h-20 rounded-full bg-surface items-center justify-center ml-3">
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: "#fdf8fa", alignItems: "center", justifyContent: "center", marginLeft: 12 }}>
             <MaterialIcons name="cookie" size={36} color="#d4a574" />
           </View>
         </View>
 
         {/* Send a Gift */}
-        <Text className="text-xl font-bold text-content mt-8 mb-1">
-          Send a Gift
-        </Text>
-        <Text className="text-sm text-content-secondary mb-4">
-          Brighten her day
-        </Text>
-        <View className="flex-row gap-4">
+        <Text style={{ fontSize: 20, fontWeight: "700", color: TEXT, marginTop: 32, marginBottom: 4 }}>Send a Gift</Text>
+        <Text style={{ fontSize: 14, color: TEXT2, marginBottom: 16 }}>Brighten her day</Text>
+        <View style={{ flexDirection: "row", gap: 16 }}>
           <TouchableOpacity
-            className="flex-1 bg-white rounded-2xl py-6 items-center border border-line"
+            style={{ flex: 1, backgroundColor: "#fff", borderRadius: 16, paddingVertical: 24, alignItems: "center", borderWidth: 1, borderColor: LINE }}
             onPress={() => router.push("/partner/gift-selection")}
           >
-            <MaterialIcons name="local-florist" size={32} color="#ee2b8c" />
-            <Text className="text-sm font-bold text-content mt-3">
-              Send Flowers
-            </Text>
+            <MaterialIcons name="local-florist" size={32} color={PINK} />
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginTop: 12 }}>Send Flowers</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className="flex-1 bg-white rounded-2xl py-6 items-center border border-line"
+            style={{ flex: 1, backgroundColor: "#fff", borderRadius: 16, paddingVertical: 24, alignItems: "center", borderWidth: 1, borderColor: LINE }}
             onPress={() => router.push("/partner/gift-selection")}
           >
-            <MaterialIcons name="cookie" size={32} color="#ee2b8c" />
-            <Text className="text-sm font-bold text-content mt-3">
-              Send Chocolate
-            </Text>
+            <MaterialIcons name="cookie" size={32} color={PINK} />
+            <Text style={{ fontSize: 14, fontWeight: "700", color: TEXT, marginTop: 12 }}>Send Chocolate</Text>
           </TouchableOpacity>
         </View>
 
         {/* Send Support */}
-        <Text className="text-xl font-bold text-content mt-8 mb-3">
-          Send Support
-        </Text>
-        <Button
-          title="Send Love"
-          onPress={() => {}}
-          icon={<MaterialIcons name="favorite" size={22} color="#fff" />}
-        />
+        <Text style={{ fontSize: 20, fontWeight: "700", color: TEXT, marginTop: 32, marginBottom: 12 }}>Send Support</Text>
+        <Button title="Send Love" onPress={() => {}} icon={<MaterialIcons name="favorite" size={22} color="#fff" />} />
 
         {/* Logged Symptoms */}
-        <Text className="text-xs font-bold text-content-secondary tracking-[3px] mt-8 mb-3">
-          LOGGED SYMPTOMS
-        </Text>
-        <View className="flex-row flex-wrap gap-3 mb-10">
+        <Text style={{ fontSize: 12, fontWeight: "700", color: TEXT2, letterSpacing: 3, marginTop: 32, marginBottom: 12 }}>LOGGED SYMPTOMS</Text>
+        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 40 }}>
           {symptoms.map((s) => (
-            <View
-              key={s.label}
-              className="flex-row items-center gap-2 bg-surface-soft rounded-full px-4 py-2"
-            >
-              <MaterialIcons
-                name={s.icon as any}
-                size={16}
-                color="#8c5f75"
-              />
-              <Text className="text-sm text-content-secondary font-medium">
-                {s.label}
-              </Text>
+            <View key={s.label} style={{ flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: SOFT, borderRadius: 999, paddingHorizontal: 16, paddingVertical: 8 }}>
+              <MaterialIcons name={s.icon as any} size={16} color={TEXT2} />
+              <Text style={{ fontSize: 14, color: TEXT2, fontWeight: "500" }}>{s.label}</Text>
             </View>
           ))}
         </View>
 
-        <View className="h-6" />
+        <View style={{ height: 24 }} />
       </ScrollView>
     </View>
   );

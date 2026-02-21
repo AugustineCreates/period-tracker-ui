@@ -4,6 +4,12 @@ import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useApp } from "@/context/AppContext";
 
+const PINK = "#ee2b8c";
+const TEXT = "#181114";
+const TEXT2 = "#8c5f75";
+const LINE = "#e6dbe0";
+const BRAND_LIGHT = "#fce7f3";
+
 const menuItems = [
   { icon: "person-outline", label: "Edit Profile" },
   { icon: "share", label: "Share My Cycle", route: "/share-cycle" },
@@ -20,52 +26,89 @@ export default function ProfileScreen() {
   const { userName, onboardingData, dailyLogs } = useApp();
 
   return (
-    <View className="flex-1 bg-surface">
-      <ScrollView contentContainerClassName="pt-20 pb-32" showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1, backgroundColor: "#fdf8fa" }}>
+      <ScrollView contentContainerStyle={{ paddingTop: 80, paddingBottom: 128 }} showsVerticalScrollIndicator={false}>
         {/* Avatar */}
-        <View className="items-center py-6">
-          <View className="w-20 h-20 rounded-full bg-brand items-center justify-center mb-4 shadow-lg shadow-brand/30">
-            <Text className="text-3xl font-bold text-white">{userName.charAt(0).toUpperCase()}</Text>
+        <View style={{ alignItems: "center", paddingVertical: 24 }}>
+          <View style={{
+            width: 80,
+            height: 80,
+            borderRadius: 40,
+            backgroundColor: PINK,
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 16,
+            shadowColor: PINK,
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.3,
+            shadowRadius: 16,
+            elevation: 8,
+          }}>
+            <Text style={{ fontSize: 28, fontWeight: "700", color: "#fff" }}>{userName.charAt(0).toUpperCase()}</Text>
           </View>
-          <Text className="text-2xl font-extrabold text-content">{userName}</Text>
-          <Text className="text-sm text-content-secondary mt-1 capitalize">
+          <Text style={{ fontSize: 24, fontWeight: "800", color: TEXT }}>{userName}</Text>
+          <Text style={{ fontSize: 14, color: TEXT2, marginTop: 4, textTransform: "capitalize" }}>
             Goal: {onboardingData.goal?.replace("_", " ") || "Track Cycle"}
           </Text>
         </View>
 
         {/* Stats */}
-        <View className="flex-row items-center justify-around bg-white mx-4 rounded-3xl p-5 shadow-sm border border-line">
+        <View style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+          backgroundColor: "#fff",
+          marginHorizontal: 16,
+          borderRadius: 24,
+          padding: 20,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.05,
+          shadowRadius: 2,
+          elevation: 1,
+          borderWidth: 1,
+          borderColor: LINE,
+        }}>
           {[{ n: onboardingData.cycleLength, l: "Cycle" }, { n: dailyLogs.length, l: "Logged" }, { n: 5, l: "Period" }].map((s, i) => (
             <React.Fragment key={s.l}>
-              {i > 0 && <View className="w-px h-9 bg-line" />}
-              <View className="items-center gap-1">
-                <Text className="text-2xl font-extrabold text-brand">{s.n}</Text>
-                <Text className="text-xs text-content-secondary font-medium">{s.l}</Text>
+              {i > 0 && <View style={{ width: 1, height: 36, backgroundColor: LINE }} />}
+              <View style={{ alignItems: "center", gap: 4 }}>
+                <Text style={{ fontSize: 24, fontWeight: "800", color: PINK }}>{s.n}</Text>
+                <Text style={{ fontSize: 12, color: TEXT2, fontWeight: "500" }}>{s.l}</Text>
               </View>
             </React.Fragment>
           ))}
         </View>
 
         {/* Menu */}
-        <View className="mt-6 px-4 gap-1">
+        <View style={{ marginTop: 24, paddingHorizontal: 16, gap: 4 }}>
           {menuItems.map((item, i) => (
             <TouchableOpacity
               key={i}
-              className="flex-row items-center justify-between bg-white rounded-2xl p-4 border border-line"
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                backgroundColor: "#fff",
+                borderRadius: 16,
+                padding: 16,
+                borderWidth: 1,
+                borderColor: LINE,
+              }}
               onPress={() => (item as any).route && router.push((item as any).route)}
             >
-              <View className="flex-row items-center gap-3">
-                <View className="w-10 h-10 rounded-xl bg-brand-light items-center justify-center">
-                  <MaterialIcons name={item.icon as any} size={22} color="#ee2b8c" />
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: BRAND_LIGHT, alignItems: "center", justifyContent: "center" }}>
+                  <MaterialIcons name={item.icon as any} size={22} color={PINK} />
                 </View>
-                <Text className="text-base font-semibold text-content">{item.label}</Text>
+                <Text style={{ fontSize: 16, fontWeight: "600", color: TEXT }}>{item.label}</Text>
               </View>
               <MaterialIcons name="chevron-right" size={22} color="rgba(0,0,0,0.2)" />
             </TouchableOpacity>
           ))}
         </View>
 
-        <Text className="text-center text-xs text-black/20 mt-8">Her Circle v1.0.0</Text>
+        <Text style={{ textAlign: "center", fontSize: 12, color: "rgba(0,0,0,0.2)", marginTop: 32 }}>Her Circle v1.0.0</Text>
       </ScrollView>
     </View>
   );

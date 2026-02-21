@@ -14,37 +14,72 @@ export function Header({
   const router = useRouter();
 
   return (
-    <View className="px-4 py-2">
-      <View className="flex-row items-center justify-between">
+    <View style={{ paddingHorizontal: 16, paddingVertical: 8 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         {showBack ? (
           <TouchableOpacity
-            className="w-11 h-11 items-center justify-center"
+            style={{
+              width: 44,
+              height: 44,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             onPress={() => router.back()}
           >
             <MaterialIcons name="arrow-back-ios" size={22} color="#181114" />
           </TouchableOpacity>
         ) : (
-          <View className="w-11" />
+          <View style={{ width: 44 }} />
         )}
 
-        <View className="flex-1 items-center">
+        <View style={{ flex: 1, alignItems: "center" }}>
           {stepText ? (
-            <Text className="text-sm font-semibold text-content uppercase tracking-widest">
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: "600",
+                color: "#181114",
+                textTransform: "uppercase",
+                letterSpacing: 2,
+              }}
+            >
               {stepText}
             </Text>
           ) : title ? (
-            <Text className="text-lg font-bold text-content text-center">
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "700",
+                color: "#181114",
+                textAlign: "center",
+              }}
+            >
               {title}
             </Text>
           ) : null}
           {subtitle && (
-            <Text className="text-xs font-bold text-brand uppercase tracking-widest mt-0.5">
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "700",
+                color: "#ee2b8c",
+                textTransform: "uppercase",
+                letterSpacing: 2,
+                marginTop: 2,
+              }}
+            >
               {subtitle}
             </Text>
           )}
         </View>
 
-        {rightAction || <View className="w-11" />}
+        {rightAction || <View style={{ width: 44 }} />}
       </View>
     </View>
   );
